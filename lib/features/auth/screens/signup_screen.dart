@@ -6,9 +6,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignupScreen extends StatelessWidget {
-  TextEditingController emailcontroller = TextEditingController();
-  TextEditingController passwordcontroller = TextEditingController();
-  TextEditingController ConfirmPasscontroller = TextEditingController();
+  TextEditingController nameCoutroller = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController ConfirmPassController = TextEditingController();
   SignupScreen({super.key});
 
   @override
@@ -17,7 +18,7 @@ class SignupScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20, top: 40),
+          padding: const EdgeInsets.only(left: 20, right: 20, top: 5),
           child: SizedBox(
             width: double.infinity,
 
@@ -67,7 +68,7 @@ class SignupScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Email",
+                        "Full Name",
                         style: GoogleFonts.poppins(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -76,7 +77,21 @@ class SignupScreen extends StatelessWidget {
                       ),
 
                       AppTextformField(
-                        controller: emailcontroller,
+                        controller: emailController,
+                        hintText: "Enter full name",
+                        prefixIcon: Icons.person_2_outlined,
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        "Email",
+                        style: GoogleFonts.poppins(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      AppTextformField(
+                        controller: emailController,
                         hintText: "Enter your email",
                         prefixIcon: Icons.mail,
                       ),
@@ -90,7 +105,7 @@ class SignupScreen extends StatelessWidget {
                         ),
                       ),
                       AppTextformField(
-                        controller: passwordcontroller,
+                        controller: passwordController,
                         hintText: "Create a password",
                         prefixIcon: Icons.lock,
                       ),
@@ -105,7 +120,7 @@ class SignupScreen extends StatelessWidget {
                       ),
 
                       AppTextformField(
-                        controller: ConfirmPasscontroller,
+                        controller: ConfirmPassController,
                         hintText: "Confirm your password",
                         prefixIcon: Icons.lock,
                       ),
