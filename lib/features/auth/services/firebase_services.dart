@@ -27,6 +27,20 @@ class authServices {
       );
 
       await _firestore.collection("user").doc(uid).set(userModel.toMap());
-    } catch (e) {}
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'email-already-in-use') {
+        throw "This email is already registered.";
+      } else if (e.code == 'invalid-email') {
+        throw "Please enter a valid email address.";
+      } else if (e.code == 'weak-password') {
+        throw "Password is too weak. Use at least 6 characters.";
+      } else if (e.code == 'network-request-failed') {
+        throw "No internet connection. Please check your network.";
+      } else if (e.code == 'user-disabled') {
+        throw "This account has been disabled.";
+      } else {
+        throw "Something went wrong. Please try again.";
+      }
+    }
   }
 }

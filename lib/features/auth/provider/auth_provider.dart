@@ -1,0 +1,29 @@
+import 'package:expense_tracker_app/features/auth/services/firebase_services.dart';
+import 'package:flutter/foundation.dart';
+
+class AuthProvider extends ChangeNotifier {
+  final authServices _authServices = authServices();
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+
+  Future<void> singup({
+    required String name,
+    required String email,
+    required String password,
+  }) async {
+    try {
+      _isLoading = true;
+      notifyListeners();
+      await _authServices.singupUser(
+        name: name,
+        email: email,
+        password: password,
+      );
+    } catch (e) {
+      throw e.toString();
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+}

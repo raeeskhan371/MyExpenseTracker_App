@@ -148,6 +148,5 @@ class ForgotScreen extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }
