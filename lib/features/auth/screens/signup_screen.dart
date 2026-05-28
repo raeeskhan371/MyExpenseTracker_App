@@ -1,3 +1,4 @@
+import 'package:expense_tracker_app/features/auth/screens/login_screen.dart';
 import 'package:expense_tracker_app/widgets/custome_ElevetedButton.dart';
 import 'package:expense_tracker_app/widgets/custome_Textfield.dart';
 import 'package:flutter/material.dart';
@@ -16,11 +17,11 @@ class SignupScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.only(left: 20, right: 20, top: 40),
           child: SizedBox(
             width: double.infinity,
+
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
                   width: 100,
@@ -28,12 +29,20 @@ class SignupScreen extends StatelessWidget {
 
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
-                    color: Colors.grey.shade200,
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.blue.withOpacity(0.2),
+                        offset: Offset(1, 1),
+                        blurRadius: 10,
+                      ),
+                    ],
                   ),
                   child: Center(
-                    child: Icon(Icons.wallet, size: 40, color: Colors.green),
+                    child: Icon(Icons.wallet, size: 40, color: Colors.blue),
                   ),
                 ),
+                const SizedBox(height: 10),
                 Text(
                   "Create Account",
                   style: GoogleFonts.poppins(
@@ -65,6 +74,7 @@ class SignupScreen extends StatelessWidget {
                           color: Colors.black,
                         ),
                       ),
+
                       AppTextformField(
                         controller: emailcontroller,
                         hintText: "Enter your email",
@@ -100,11 +110,12 @@ class SignupScreen extends StatelessWidget {
                         prefixIcon: Icons.lock,
                       ),
                       const SizedBox(height: 16),
+                      // SIGNUP BUTTON
                       AppElevatedButton(
                         onPressed: () {},
                         ButtonText: "SIGN UP",
-                        width: 350,
-                        height: 60,
+                        width: 370,
+                        height: 55,
                         ContainerColor: Colors.blueAccent,
                         borderRadius: 10,
                         TextColor: Colors.white,
@@ -130,6 +141,7 @@ class SignupScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 20),
+                // SINGIN WITH GOOGLE
                 Container(
                   height: 50,
                   width: 350,
@@ -174,18 +186,29 @@ class SignupScreen extends StatelessWidget {
                     Text(
                       "Already have an account?",
                       style: GoogleFonts.poppins(
-                        fontSize: 16,
+                        fontSize: 18,
                         fontWeight: FontWeight.w600,
                         color: Colors.grey,
                       ),
                     ),
                     const SizedBox(width: 2),
-                    Text(
-                      "Login",
-                      style: GoogleFonts.poppins(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.blueAccent,
+                    // LoginButton
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginScreen(),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        " Login",
+                        style: GoogleFonts.poppins(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.blueAccent,
+                        ),
                       ),
                     ),
                   ],
