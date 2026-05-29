@@ -43,4 +43,32 @@ class authServices {
       }
     }
   }
+
+  Future<void> loginUser({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final UserCredential = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'invalid-email') {
+        throw 'Invalid email format';
+      } else if (e.code == 'invalid-credential') {
+        throw 'Email or password is incorrect';
+      } else if (e.code == 'user-not-found') {
+        throw 'No user found with this email';
+      } else if (e.code == 'wrong-password') {
+        throw 'Incorrect password';
+      } else if (e.code == 'user-disabled') {
+        throw 'This account has been disabled';
+      } else if (e.code == 'too-many-requests') {
+        throw 'Too many attempts. Try again later';
+      } else {
+        throw 'Login failed. Please try again';
+      }
+    }
+  }
 }
