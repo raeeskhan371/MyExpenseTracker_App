@@ -1,3 +1,4 @@
+import 'package:expense_tracker_app/Home_Screen.dart';
 import 'package:expense_tracker_app/features/auth/provider/auth_provider.dart';
 import 'package:expense_tracker_app/features/auth/screens/forgot_screen.dart';
 import 'package:expense_tracker_app/features/auth/screens/signup_screen.dart';
@@ -144,6 +145,7 @@ class LoginScreen extends StatelessWidget {
                                           context,
                                         ).showSnackBar(
                                           SnackBar(
+                                            duration: Duration(seconds: 2),
                                             content: Text(
                                               "Login Sucuessfully",
                                               style: GoogleFonts.poppins(
@@ -151,6 +153,12 @@ class LoginScreen extends StatelessWidget {
                                               ),
                                             ),
                                             backgroundColor: Colors.green,
+                                          ),
+                                        );
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => HomeScreen(),
                                           ),
                                         );
                                       } catch (e) {

@@ -1,8 +1,10 @@
+import 'package:expense_tracker_app/features/auth/provider/auth_provider.dart';
 import 'package:expense_tracker_app/features/auth/screens/login_screen.dart';
 import 'package:expense_tracker_app/widgets/custome_ElevetedButton.dart';
 import 'package:expense_tracker_app/widgets/custome_Textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class ForgotScreen extends StatelessWidget {
   TextEditingController emailcontroller = TextEditingController();
@@ -91,16 +93,61 @@ class ForgotScreen extends StatelessWidget {
                       ),
 
                       const SizedBox(height: 25),
-                      // SIGNUP BUTTON
-                      AppElevatedButton(
-                        onPressed: () {},
-                        ButtonText: "Send Reset Link",
-                        width: 370,
-                        height: 55,
-                        ContainerColor: Colors.redAccent,
-                        borderRadius: 10,
-                        TextColor: Colors.white,
-                        fontSize: 25,
+
+                      // Send Reset Link BUTTON
+                      Consumer<AuthProvider>(
+                        builder: (context, provider, child) {
+                          return provider.isLoading
+                              ? CircularProgressIndicator(color: Colors.red)
+                              : AppElevatedButton(
+                                  onPressed: () async {
+                                    try {
+                                      await provider.forgotPassword(
+                                        email: emailcontroller.text.trim(),
+                                      );
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            "Password reset link sent to your email",
+                                            style: GoogleFonts.poppins(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                          backgroundColor: Colors.red,
+                                        ),
+                                      );
+                                    } catch (e) {
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).hideCurrentSnackBar();
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            e.toString(),
+                                            style: GoogleFonts.poppins(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                          backgroundColor: Colors.red,
+                                        ),
+                                      );
+                                    }
+                                  },
+                                  ButtonText: "Send Reset Link",
+                                  width: 370,
+                                  height: 55,
+                                  ContainerColor: Colors.redAccent,
+                                  borderRadius: 10,
+                                  TextColor: Colors.white,
+                                  fontSize: 25,
+                                );
+                        },
                       ),
                     ],
                   ),

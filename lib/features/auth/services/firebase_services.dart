@@ -71,4 +71,24 @@ class authServices {
       }
     }
   }
+
+  Future<void> forgotPassword({required String email}) async {
+    try {
+      final UserCredential = _auth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'invalid-email') {
+        throw 'Invalid email address';
+      } else if (e.code == 'missing-email') {
+        throw 'Please enter your email';
+      } else if (e.code == 'user-not-found') {
+        throw 'No account found with this email';
+      } else if (e.code == 'too-many-requests') {
+        throw 'Too many attempts. Try again later';
+      } else if (e.code == 'network-request-failed') {
+        throw 'No internet connection';
+      } else {
+        throw 'Failed to send reset password email';
+      }
+    }
+  }
 }

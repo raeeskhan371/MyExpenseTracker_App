@@ -39,4 +39,17 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  Future<void> forgotPassword({required String email}) async {
+    try {
+      _isLoading = true;
+      notifyListeners();
+      _authServices.forgotPassword(email: email);
+    } catch (e) {
+      throw (e.toString());
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
 }
