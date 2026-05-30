@@ -1,4 +1,5 @@
 import 'package:expense_tracker_app/features/auth/services/firebase_services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 
 class AuthProvider extends ChangeNotifier {
@@ -45,6 +46,19 @@ class AuthProvider extends ChangeNotifier {
       _isLoading = true;
       notifyListeners();
       _authServices.forgotPassword(email: email);
+    } catch (e) {
+      throw (e.toString());
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  Future<void> logout() async {
+    try {
+      _isLoading = true;
+      notifyListeners();
+      _authServices.logoutUser();
     } catch (e) {
       throw (e.toString());
     } finally {

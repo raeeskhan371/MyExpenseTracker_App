@@ -91,4 +91,14 @@ class authServices {
       }
     }
   }
+
+  Future<void> logoutUser() async {
+    try {
+      final UserCredential = await _auth.signOut();
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'network-request-failed') {
+        throw 'No internet connection';
+      }
+    }
+  }
 }

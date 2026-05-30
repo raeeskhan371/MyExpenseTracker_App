@@ -1,3 +1,4 @@
+import 'package:expense_tracker_app/Home_Screen.dart';
 import 'package:expense_tracker_app/features/auth/provider/auth_provider.dart';
 import 'package:expense_tracker_app/features/auth/screens/forgot_screen.dart';
 import 'package:expense_tracker_app/features/auth/screens/login_screen.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: ForgotScreen(),
+      home: SignupScreen(),
     );
   }
 }
