@@ -1,9 +1,9 @@
-import 'package:expense_tracker_app/Home_Screen.dart';
 import 'package:expense_tracker_app/features/auth/provider/auth_provider.dart';
 import 'package:expense_tracker_app/features/auth/screens/forgot_screen.dart';
 import 'package:expense_tracker_app/features/auth/screens/signup_screen.dart';
-import 'package:expense_tracker_app/features/widgets/custome_ElevetedButton.dart';
-import 'package:expense_tracker_app/features/widgets/custome_Textfield.dart';
+import 'package:expense_tracker_app/features/expenses/screens/home_screen/home_screen.dart';
+import 'package:expense_tracker_app/core/widgets/custome_ElevetedButton.dart';
+import 'package:expense_tracker_app/core/widgets/custome_Textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
