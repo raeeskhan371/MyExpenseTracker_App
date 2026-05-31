@@ -25,7 +25,7 @@ class CategoryItemCard extends StatelessWidget {
         border: Border.all(color: Colors.grey.shade300),
         boxShadow: [
           BoxShadow(
-            color: SubCatergoryContainer.withOpacity(0.1),
+            color: SubCatergoryContainer.withOpacity(0.2),
             offset: Offset(0, 2),
             blurRadius: 10,
           ),
@@ -36,6 +36,7 @@ class CategoryItemCard extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const SizedBox(height: 5),
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
@@ -47,6 +48,7 @@ class CategoryItemCard extends StatelessWidget {
               child: Icon(catergoryIcon, color: Colors.white),
             ),
           ),
+          const SizedBox(height: 5),
           Text(
             categoryText,
             style: GoogleFonts.poppins(
@@ -55,6 +57,7 @@ class CategoryItemCard extends StatelessWidget {
               color: Colors.black,
             ),
           ),
+          const SizedBox(height: 5),
         ],
       ),
     );

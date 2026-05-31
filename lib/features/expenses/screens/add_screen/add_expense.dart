@@ -1,3 +1,4 @@
+import 'package:expense_tracker_app/core/widgets/custome_ElevetedButton.dart';
 import 'package:expense_tracker_app/core/widgets/custome_Textfield.dart';
 import 'package:expense_tracker_app/features/expenses/screens/add_screen/widgets/add_expense_topRow.dart';
 import 'package:expense_tracker_app/features/expenses/screens/add_screen/widgets/category_item_card.dart';
@@ -7,6 +8,8 @@ import 'package:google_fonts/google_fonts.dart';
 class AddExpense extends StatelessWidget {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController amountController = TextEditingController();
+  final TextEditingController dateController = TextEditingController();
+  final TextEditingController noteController = TextEditingController();
   AddExpense({super.key});
 
   @override
@@ -22,8 +25,9 @@ class AddExpense extends StatelessWidget {
               children: [
                 // toprow Add Expenese
                 AddExpenseToprow(),
+                const SizedBox(height: 20),
                 Text(
-                  "Full Name",
+                  "Title",
                   style: GoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -92,12 +96,74 @@ class AddExpense extends StatelessWidget {
                       catergoryIcon: Icons.receipt_long,
                     ),
                     CategoryItemCard(
-                      categoryText: "Medical",
+                      categoryText: "Other",
                       catergoryContainerColor: Colors.deepPurple.shade50,
-                      SubCatergoryContainer: Colors.red,
-                      catergoryIcon: Icons.medical_information,
+                      SubCatergoryContainer: Colors.grey,
+                      catergoryIcon: Icons.more_horiz,
                     ),
                   ],
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  "Date",
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
+                ),
+                const SizedBox(height: 20),
+
+                TextField(
+                  readOnly: true,
+                  controller: dateController,
+                  decoration: InputDecoration(
+                    hintText: "Select Date",
+                    suffixIcon: Icon(
+                      Icons.arrow_drop_down,
+                      size: 30,
+                      color: Colors.grey,
+                    ),
+                    prefixIcon: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 13),
+                      child: Icon(Icons.date_range, size: 22),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  "Notes (Optional)",
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                AppTextformField(
+                  controller: noteController,
+                  hintText: "Add Note...",
+                  prefixIcon: Icons.note,
+                  maxline: 5,
+                ),
+                const SizedBox(height: 20),
+                AppElevatedButton(
+                  ButtonText: "Save Expense",
+                  width: double.infinity,
+                  height: 55,
+                  ContainerColor: Colors.indigoAccent,
+                  borderRadius: 10,
+                  TextColor: Colors.white,
+                  fontSize: 20,
+                  onPressed: () {},
                 ),
               ],
             ),

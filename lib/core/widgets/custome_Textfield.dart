@@ -8,6 +8,7 @@ class AppTextformField extends StatelessWidget {
   final IconData prefixIcon;
   final bool obscureText;
   final TextInputType? textInputType;
+  final int? maxline;
 
   AppTextformField({
     super.key,
@@ -17,6 +18,7 @@ class AppTextformField extends StatelessWidget {
     this.obscureText = false,
     this.textInputType = TextInputType.text,
     this.validator,
+    this.maxline,
   });
 
   @override
@@ -28,7 +30,7 @@ class AppTextformField extends StatelessWidget {
         hintText: hintText,
         prefixIcon: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 13),
-          child: Icon(prefixIcon, size: 22),
+          child: Icon(prefixIcon, size: 22, color: Colors.grey.shade600),
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.grey),
