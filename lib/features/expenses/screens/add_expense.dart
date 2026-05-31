@@ -1,7 +1,8 @@
 import 'package:expense_tracker_app/core/widgets/custome_ElevetedButton.dart';
 import 'package:expense_tracker_app/core/widgets/custome_Textfield.dart';
-import 'package:expense_tracker_app/features/expenses/screens/add_screen/widgets/add_expense_topRow.dart';
-import 'package:expense_tracker_app/features/expenses/screens/add_screen/widgets/category_item_card.dart';
+import 'package:expense_tracker_app/features/widgets/add_expense_screen_widgtes/add_expense_topRow.dart';
+
+import 'package:expense_tracker_app/features/widgets/add_expense_screen_widgtes/category_item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -24,7 +25,7 @@ class AddExpense extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // toprow Add Expenese
-                AddExpenseToprow(),
+                AddExpenseToprow(topTrowText: "Add Expense"),
                 const SizedBox(height: 20),
                 Text(
                   "Title",

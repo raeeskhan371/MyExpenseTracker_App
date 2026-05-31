@@ -1,6 +1,8 @@
-import 'package:expense_tracker_app/features/expenses/screens/home_screen/widgets/HomeHeader.dart';
-import 'package:expense_tracker_app/features/expenses/screens/home_screen/widgets/balance_overview_card.dart';
-import 'package:expense_tracker_app/features/expenses/screens/home_screen/widgets/financial_summary_card.dart';
+import 'package:expense_tracker_app/features/expenses/screens/add_expense.dart';
+import 'package:expense_tracker_app/features/widgets/homescreen_widgets/HomeHeader.dart';
+import 'package:expense_tracker_app/features/widgets/homescreen_widgets/balance_overview_card.dart';
+import 'package:expense_tracker_app/features/widgets/homescreen_widgets/financial_summary_card.dart';
+import 'package:expense_tracker_app/features/widgets/homescreen_widgets/home_screen_listTile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -49,37 +51,22 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: 10),
 
                   // Recent Expenseces
-                  Container(
-                    height: 350,
-                    width: double.infinity,
-
-                    decoration: BoxDecoration(
-                      color: Colors.amber,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Expanded(
-                      child: ListView.separated(
-                        itemCount: 10,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            leading: CircleAvatar(
-                              backgroundColor: Colors.green,
-                            ),
-                            title: Text("Raees Khan"),
-                            subtitle: Text("Amount 1000"),
-                            trailing: Icon(Icons.delete, color: Colors.red),
-                          );
-                        },
-                        separatorBuilder: (context, index) {
-                          return const Divider();
-                        },
-                      ),
-                    ),
-                  ),
+                  ExpenseListTile(),
                 ],
               ),
             ),
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.indigo,
+          elevation: 5,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AddExpense()),
+            );
+          },
+          child: Icon(Icons.add, color: Colors.white),
         ),
       ),
     );

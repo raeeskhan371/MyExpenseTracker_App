@@ -2,18 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AddExpenseToprow extends StatelessWidget {
-  const AddExpenseToprow({super.key});
+  String topTrowText;
+  AddExpenseToprow({super.key, required this.topTrowText});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(Icons.arrow_back_ios_new, color: Colors.black),
+        GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Icon(Icons.arrow_back_ios_new, color: Colors.black),
+        ),
 
         Expanded(
           child: Center(
             child: Text(
-              "Add Expense",
+              topTrowText,
               textAlign: TextAlign.center,
               style: GoogleFonts.poppins(
                 fontSize: 18,
