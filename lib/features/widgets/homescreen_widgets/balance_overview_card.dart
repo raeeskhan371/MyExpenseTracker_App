@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class BalanceOverviewCard extends StatelessWidget {
   const BalanceOverviewCard({super.key});
@@ -23,13 +24,17 @@ class BalanceOverviewCard extends StatelessWidget {
             // Total balance;
             Row(
               children: [
-                Text(
-                  "Total Balance ",
-                  style: GoogleFonts.poppins(
-                    fontSize: 16,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w400,
-                  ),
+                Consumer(
+                  builder: (context, provier, child) {
+                    return Text(
+                      "Total Balance ",
+                      style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    );
+                  },
                 ),
                 const SizedBox(width: 10),
                 Icon(

@@ -1,4 +1,6 @@
+import 'package:expense_tracker_app/core/widgets/custome_ElevetedButton.dart';
 import 'package:expense_tracker_app/features/expenses/screens/add_expense.dart';
+import 'package:expense_tracker_app/features/expenses/screens/set_initial_balance.dart';
 import 'package:expense_tracker_app/features/widgets/homescreen_widgets/HomeHeader.dart';
 import 'package:expense_tracker_app/features/widgets/homescreen_widgets/balance_overview_card.dart';
 import 'package:expense_tracker_app/features/widgets/homescreen_widgets/financial_summary_card.dart';
@@ -52,6 +54,23 @@ class HomeScreen extends StatelessWidget {
 
                   // Recent Expenseces
                   ExpenseListTile(),
+                  AppElevatedButton(
+                    ButtonText: "Set Initial Balance",
+                    width: 350,
+                    height: 50,
+                    ContainerColor: Colors.blue,
+                    borderRadius: 10,
+                    TextColor: Colors.white,
+                    fontSize: 18,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: ((context) => WalletScreen()),
+                        ),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),

@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ExpenseListTile extends StatelessWidget {
+class ExpenseListTile extends StatefulWidget {
   const ExpenseListTile({super.key});
 
+  @override
+  State<ExpenseListTile> createState() => _ExpenseListTileState();
+}
+
+class _ExpenseListTileState extends State<ExpenseListTile> {
   @override
   Widget build(BuildContext context) {
     return Container(
