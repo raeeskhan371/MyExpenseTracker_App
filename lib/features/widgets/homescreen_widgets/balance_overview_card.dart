@@ -1,12 +1,14 @@
+import 'package:expense_tracker_app/features/expenses/provider/expense_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class BalanceOverviewCard extends StatelessWidget {
-  const BalanceOverviewCard({super.key});
+  BalanceOverviewCard({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.watch<ExpenseProvider>();
     return Container(
       width: double.infinity,
       height: 150,
@@ -24,17 +26,13 @@ class BalanceOverviewCard extends StatelessWidget {
             // Total balance;
             Row(
               children: [
-                Consumer(
-                  builder: (context, provier, child) {
-                    return Text(
-                      "Total Balance ",
-                      style: GoogleFonts.poppins(
-                        fontSize: 16,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    );
-                  },
+                Text(
+                  "Total Balance ",
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
                 const SizedBox(width: 10),
                 Icon(
