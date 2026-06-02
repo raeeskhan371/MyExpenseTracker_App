@@ -1,5 +1,6 @@
 import 'package:expense_tracker_app/core/widgets/custome_ElevetedButton.dart';
 import 'package:expense_tracker_app/features/expenses/screens/add_expense.dart';
+import 'package:expense_tracker_app/features/expenses/screens/set_initial_balance.dart';
 
 import 'package:expense_tracker_app/features/widgets/homescreen_widgets/HomeHeader.dart';
 import 'package:expense_tracker_app/features/widgets/homescreen_widgets/balance_overview_card.dart';
@@ -62,7 +63,12 @@ class HomeScreen extends StatelessWidget {
                     borderRadius: 10,
                     TextColor: Colors.white,
                     fontSize: 18,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => WalletScreen()),
+                      );
+                    },
                   ),
                 ],
               ),

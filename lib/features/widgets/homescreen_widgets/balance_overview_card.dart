@@ -45,13 +45,32 @@ class BalanceOverviewCard extends StatelessWidget {
             // Balance And Wallet Icon
             Row(
               children: [
-                Text(
-                  "Rs 12,450.00 ",
-                  style: GoogleFonts.poppins(
-                    fontSize: 28,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w800,
-                  ),
+                StreamBuilder(
+                  stream: context.read<ExpenseProvider>().getUser(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator();
+                    }
+
+                    if (!snapshot.hasData ||
+                        snapshot.data == null ||
+                        !snapshot.data!.exists) {
+                      return Text("No Data");
+                    }
+                    final userData =
+                        snapshot.data!.data() as Map<String, dynamic>;
+                    ;
+                    final balance = (userData?["initialBalance"] ?? 0)
+                        .toString();
+                    return Text(
+                      balance.toString(),
+                      style: GoogleFonts.poppins(
+                        fontSize: 28,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    );
+                  },
                 ),
                 Spacer(),
                 Container(
