@@ -22,4 +22,28 @@ class ExpenseProvider with ChangeNotifier {
   Stream<DocumentSnapshot<Map<String, dynamic>>> getUser() {
     return _expenseServices.getUserData();
   }
+
+  //Add Expense
+  Future<void> addExpenses({
+    required String title,
+    required double amount,
+    required String category,
+  }) async {
+    _isLoading = true;
+    notifyListeners();
+
+    await _expenseServices.addExpense(
+      title: title,
+      amount: amount,
+      category: category,
+    );
+
+    _isLoading = false;
+    notifyListeners();
+  }
+  // get expenseTIle
+
+  Stream<QuerySnapshot> getExpneseTileData() {
+    return _expenseServices.getExpneseTile();
+  }
 }

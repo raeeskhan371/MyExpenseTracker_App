@@ -1,4 +1,6 @@
+import 'package:expense_tracker_app/features/expenses/provider/expense_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ExpenseListTile extends StatefulWidget {
   const ExpenseListTile({super.key});
@@ -18,31 +20,27 @@ class _ExpenseListTileState extends State<ExpenseListTile> {
         color: Colors.amber,
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Expanded(
-        child: ListView.separated(
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return ListTile(
-              leading: CircleAvatar(backgroundColor: Colors.green),
-              title: Text("Raees Khan"),
-              subtitle: Text("Amount 1000"),
-              trailing: SizedBox(
-                width: 50,
+      child: StreamBuilder(
+        stream: context.read<ExpenseProvider>().getExpneseTileData(),
+        builder: (context, snapshot) {
+          final docs = snapshot.data!.docs;
 
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Icon(Icons.delete, color: Colors.red),
-                    Icon(Icons.edit, color: Colors.blue),
-                  ],
-                ),
-              ),
-            );
-          },
-          separatorBuilder: (context, index) {
-            return const Divider();
-          },
-        ),
+          if (!snapshot.hasData) {
+            return CircularProgressIndicator(color: Colors.blue);
+          }
+          return ListView.builder(
+            itemCount: docs.length,
+            itemBuilder: (context, index) {
+              final data = docs[index].data() as Map<String, dynamic>;
+              return ListTile(
+                leading: CircleAvatar(backgroundColor: Colors.green),
+                title: Text(data["title"] ?? 0),
+                subtitle: Text(data["category"] ?? 0),
+                trailing: Text(data["amount"].toString()),
+              );
+            },
+          );
+        },
       ),
     );
   }
