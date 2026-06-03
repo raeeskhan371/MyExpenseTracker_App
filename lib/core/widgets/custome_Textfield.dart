@@ -2,23 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AppTextformField extends StatelessWidget {
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String? Function(String?)? validator;
-  final String hintText;
+  final String? hintText;
   final IconData prefixIcon;
   final bool obscureText;
   final TextInputType? textInputType;
   final int? maxline;
+  final bool readOnly;
 
   AppTextformField({
     super.key,
-    required this.controller,
-    required this.hintText,
+    this.controller,
+    this.hintText,
     required this.prefixIcon,
     this.obscureText = false,
     this.textInputType = TextInputType.text,
     this.validator,
     this.maxline,
+    this.readOnly = false,
   });
 
   @override
@@ -26,6 +28,7 @@ class AppTextformField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       obscureText: obscureText,
+      readOnly: readOnly,
       decoration: InputDecoration(
         hintText: hintText,
         prefixIcon: Padding(

@@ -1,16 +1,11 @@
+import 'package:expense_tracker_app/core/widgets/custome_Textfield.dart';
+import 'package:expense_tracker_app/features/auth/provider/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-// apna custom widget import karo
-import 'package:expense_tracker_app/core/widgets/custome_Textfield.dart';
+import 'package:provider/provider.dart';
 
 class ProfileFormScreen extends StatelessWidget {
   ProfileFormScreen({super.key});
-
-  // dummy controllers (sirf UI ke liye)
-  final nameController = TextEditingController();
-  final emailController = TextEditingController();
-  final balanceController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +14,9 @@ class ProfileFormScreen extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 20),
 
@@ -45,7 +41,7 @@ class ProfileFormScreen extends StatelessWidget {
 
                 // TITLE
                 Text(
-                  "Profile Form",
+                  "Profile Detail",
                   style: GoogleFonts.poppins(
                     fontSize: 24,
                     fontWeight: FontWeight.w600,
@@ -71,15 +67,23 @@ class ProfileFormScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
 
-                AppTextformField(
-                  controller: nameController,
-                  hintText: "Enter your name",
-                  prefixIcon: Icons.person,
-                ),
+                FutureBuilder(
+                  future: context.read<AuthProvider>().getProfileData(),
+                  builder: (context, Snapshot) {
+                    final doc = Snapshot.data!.data() as Map<String, dynamic>;
+                    return AppTextformField(
+                      hintText: doc["name"].toString(),
 
+                      prefixIcon: Icons.person_2,
+                      readOnly: true,
+                    );
+                  },
+                ),
                 const SizedBox(height: 15),
 
                 // EMAIL
+                const SizedBox(height: 5),
+
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -89,10 +93,17 @@ class ProfileFormScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
 
-                AppTextformField(
-                  controller: emailController,
-                  hintText: "Enter your email",
-                  prefixIcon: Icons.mail,
+                FutureBuilder(
+                  future: context.read<AuthProvider>().getProfileData(),
+                  builder: (context, Snapshot) {
+                    final doc = Snapshot.data!.data() as Map<String, dynamic>;
+                    return AppTextformField(
+                      hintText: doc["email"].toString(),
+
+                      prefixIcon: Icons.mail,
+                      readOnly: true,
+                    );
+                  },
                 ),
 
                 const SizedBox(height: 15),
@@ -107,43 +118,45 @@ class ProfileFormScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
 
-                AppTextformField(
-                  controller: balanceController,
-                  hintText: "Enter starting balance",
-                  prefixIcon: Icons.account_balance_wallet,
+                FutureBuilder(
+                  future: context.read<AuthProvider>().getProfileData(),
+                  builder: (context, Snapshot) {
+                    final doc = Snapshot.data!.data() as Map<String, dynamic>;
+                    return AppTextformField(
+                      hintText: doc["initialBalance"].toString(),
+
+                      prefixIcon: Icons.account_balance_wallet_outlined,
+                      readOnly: true,
+                    );
+                  },
+                ),
+
+                const SizedBox(height: 30),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Created At",
+                    style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
+                  ),
+                ),
+                const SizedBox(height: 5),
+
+                FutureBuilder(
+                  future: context.read<AuthProvider>().getProfileData(),
+                  builder: (context, Snapshot) {
+                    final doc = Snapshot.data!.data() as Map<String, dynamic>;
+                    return AppTextformField(
+                      hintText: doc["initialBalance"].toString(),
+
+                      prefixIcon: Icons.date_range_outlined,
+                      readOnly: true,
+                    );
+                  },
                 ),
 
                 const SizedBox(height: 30),
 
                 // SAVE BUTTON (DUMMY)
-                SizedBox(
-                  width: double.infinity,
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("Profile Saved (Dummy)"),
-                          backgroundColor: Colors.blue,
-                        ),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blueAccent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    child: Text(
-                      "SAVE PROFILE",
-                      style: GoogleFonts.poppins(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
               ],
             ),
           ),

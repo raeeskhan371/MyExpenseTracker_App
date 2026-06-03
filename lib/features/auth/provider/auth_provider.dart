@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expense_tracker_app/features/auth/services/firebase_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -65,5 +66,12 @@ class AuthProvider extends ChangeNotifier {
       _isLoading = false;
       notifyListeners();
     }
+  }
+
+  // profileData
+  Future<DocumentSnapshot<Map<String, dynamic>>> getProfileData() async {
+    var profileData = await _authServices.profileData();
+
+    return profileData;
   }
 }

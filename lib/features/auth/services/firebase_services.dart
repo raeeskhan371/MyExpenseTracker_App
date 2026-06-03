@@ -101,4 +101,13 @@ class authServices {
       }
     }
   }
+
+  // GetUser Data for Profiel Screen using Future
+
+  Future<DocumentSnapshot<Map<String, dynamic>>> profileData() async {
+    final uid = _auth.currentUser!.uid;
+
+    var doc = await _firestore.collection("user").doc(uid).get();
+    return doc;
+  }
 }

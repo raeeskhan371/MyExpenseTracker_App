@@ -1,4 +1,5 @@
 import 'package:expense_tracker_app/features/auth/provider/auth_provider.dart';
+import 'package:expense_tracker_app/features/auth/screens/auth_gate.dart';
 import 'package:expense_tracker_app/features/auth/screens/forgot_screen.dart';
 import 'package:expense_tracker_app/features/auth/screens/login_screen.dart';
 import 'package:expense_tracker_app/features/auth/screens/profile_screen.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: LoginScreen(),
+      home: ProfileFormScreen(),
     );
   }
 }

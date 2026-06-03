@@ -60,8 +60,7 @@ class BalanceOverviewCard extends StatelessWidget {
                     final userData =
                         snapshot.data!.data() as Map<String, dynamic>;
                     ;
-                    final balance = (userData?["initialBalance"] ?? 0)
-                        .toString();
+                    final balance = userData["initialBalance"] ?? 0.toString();
                     return Text(
                       balance.toString(),
                       style: GoogleFonts.poppins(
