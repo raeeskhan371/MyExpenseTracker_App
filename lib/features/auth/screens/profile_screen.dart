@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expense_tracker_app/core/widgets/custome_Textfield.dart';
 import 'package:expense_tracker_app/features/auth/provider/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class ProfileFormScreen extends StatelessWidget {
@@ -122,8 +124,11 @@ class ProfileFormScreen extends StatelessWidget {
                   future: context.read<AuthProvider>().getProfileData(),
                   builder: (context, Snapshot) {
                     final doc = Snapshot.data!.data() as Map<String, dynamic>;
+                    final balance = doc["initialBalance"];
+                    final formatter = NumberFormat('#,##0');
+                    final formaterBalance = formatter.format(balance);
                     return AppTextformField(
-                      hintText: doc["initialBalance"].toString(),
+                      hintText: formaterBalance.toString(),
 
                       prefixIcon: Icons.account_balance_wallet_outlined,
                       readOnly: true,
@@ -145,8 +150,13 @@ class ProfileFormScreen extends StatelessWidget {
                   future: context.read<AuthProvider>().getProfileData(),
                   builder: (context, Snapshot) {
                     final doc = Snapshot.data!.data() as Map<String, dynamic>;
+                    final dateTime = (doc["createdAt"] as Timestamp).toDate();
+
+                    final formatDate = DateFormat(
+                      "dd/MM/yyyy, hh:mm a",
+                    ).format(dateTime);
                     return AppTextformField(
-                      hintText: doc["initialBalance"].toString(),
+                      hintText: formatDate,
 
                       prefixIcon: Icons.date_range_outlined,
                       readOnly: true,
