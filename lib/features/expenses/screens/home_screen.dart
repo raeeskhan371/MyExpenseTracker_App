@@ -1,10 +1,14 @@
+import 'package:expense_tracker_app/core/widgets/custome_ElevetedButton.dart';
+import 'package:expense_tracker_app/features/expenses/provider/expense_provider.dart';
 import 'package:expense_tracker_app/features/expenses/screens/add_expense.dart';
+import 'package:expense_tracker_app/features/expenses/screens/set_initial_balance.dart';
 import 'package:expense_tracker_app/features/widgets/homescreen_widgets/HomeHeader.dart';
 import 'package:expense_tracker_app/features/widgets/homescreen_widgets/balance_overview_card.dart';
 import 'package:expense_tracker_app/features/widgets/homescreen_widgets/financial_summary_card.dart';
 import 'package:expense_tracker_app/features/widgets/homescreen_widgets/home_screen_listTile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -52,6 +56,21 @@ class HomeScreen extends StatelessWidget {
 
                   // Recent Expenseces
                   ExpenseListTile(),
+                  AppElevatedButton(
+                    ButtonText: "Set Initial Balance",
+                    width: 350,
+                    height: 50,
+                    ContainerColor: Colors.blue,
+                    borderRadius: 10,
+                    TextColor: Colors.white,
+                    fontSize: 20,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => WalletScreen()),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
