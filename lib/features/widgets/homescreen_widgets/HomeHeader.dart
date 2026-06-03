@@ -1,3 +1,4 @@
+import 'package:expense_tracker_app/features/auth/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -10,7 +11,16 @@ class HomeHeader extends StatelessWidget {
       padding: const EdgeInsets.only(left: 5, right: 5),
       child: Row(
         children: [
-          Icon(Icons.menu),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ProfileFormScreen()),
+              );
+            },
+
+            child: Icon(Icons.menu),
+          ),
           SizedBox(width: 15),
           Text(
             "Home",

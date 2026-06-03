@@ -13,6 +13,7 @@ class ProfileFormScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -20,6 +21,13 @@ class ProfileFormScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+
+                  child: Icon(Icons.arrow_back_ios),
+                ),
                 const SizedBox(height: 20),
 
                 // ICON
@@ -72,6 +80,9 @@ class ProfileFormScreen extends StatelessWidget {
                 FutureBuilder(
                   future: context.read<AuthProvider>().getProfileData(),
                   builder: (context, Snapshot) {
+                    if (!Snapshot.hasData || Snapshot == null) {
+                      return CircularProgressIndicator(color: Colors.blue);
+                    }
                     final doc = Snapshot.data!.data() as Map<String, dynamic>;
                     return AppTextformField(
                       hintText: doc["name"].toString(),
@@ -98,6 +109,9 @@ class ProfileFormScreen extends StatelessWidget {
                 FutureBuilder(
                   future: context.read<AuthProvider>().getProfileData(),
                   builder: (context, Snapshot) {
+                    if (!Snapshot.hasData || Snapshot == null) {
+                      return CircularProgressIndicator(color: Colors.blue);
+                    }
                     final doc = Snapshot.data!.data() as Map<String, dynamic>;
                     return AppTextformField(
                       hintText: doc["email"].toString(),
@@ -123,6 +137,9 @@ class ProfileFormScreen extends StatelessWidget {
                 FutureBuilder(
                   future: context.read<AuthProvider>().getProfileData(),
                   builder: (context, Snapshot) {
+                    if (!Snapshot.hasData || Snapshot == null) {
+                      return CircularProgressIndicator(color: Colors.blue);
+                    }
                     final doc = Snapshot.data!.data() as Map<String, dynamic>;
                     final balance = doc["initialBalance"];
                     final formatter = NumberFormat('#,##0');
@@ -149,7 +166,11 @@ class ProfileFormScreen extends StatelessWidget {
                 FutureBuilder(
                   future: context.read<AuthProvider>().getProfileData(),
                   builder: (context, Snapshot) {
+                    if (!Snapshot.hasData || Snapshot == null) {
+                      return CircularProgressIndicator(color: Colors.blue);
+                    }
                     final doc = Snapshot.data!.data() as Map<String, dynamic>;
+
                     final dateTime = (doc["createdAt"] as Timestamp).toDate();
 
                     final formatDate = DateFormat(

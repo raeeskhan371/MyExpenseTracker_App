@@ -1,98 +1,72 @@
-import 'package:expense_tracker_app/core/widgets/custome_ElevetedButton.dart';
-import 'package:expense_tracker_app/features/auth/provider/auth_provider.dart';
-import 'package:expense_tracker_app/features/auth/screens/login_screen.dart';
-
+import 'package:expense_tracker_app/features/expenses/screens/add_expense.dart';
+import 'package:expense_tracker_app/features/widgets/homescreen_widgets/HomeHeader.dart';
+import 'package:expense_tracker_app/features/widgets/homescreen_widgets/balance_overview_card.dart';
+import 'package:expense_tracker_app/features/widgets/homescreen_widgets/financial_summary_card.dart';
+import 'package:expense_tracker_app/features/widgets/homescreen_widgets/home_screen_listTile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.green,
-              ),
-              width: double.infinity,
-              height: 500,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SingleChildScrollView(
+          child: SizedBox(
+            width: double.infinity,
 
-              child: Center(
-                child: Text(
-                  "Welcome to MyexpenseTracker",
-                  style: GoogleFonts.poppins(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
+              child: Column(
+                children: [
+                  // Top Row
+                  HomeHeader(),
+                  const SizedBox(height: 20),
+                  // Main top Container
+                  BalanceOverviewCard(),
+                  const SizedBox(height: 10),
+                  // FinancialSummry Card
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      FinancialSummaryCard(
+                        transactionIcon: Icons.arrow_downward,
+                        smallContainer: Colors.green,
+                        MonthText: Colors.green,
+                        Amount: "3000,0.00",
+                        transactionType: "Income",
+                      ),
+                      FinancialSummaryCard(
+                        transactionIcon: Icons.arrow_upward,
+                        smallContainer: Colors.redAccent,
+                        MonthText: Colors.redAccent,
+                        Amount: "2000,0.00",
+                        transactionType: "Expense",
+                      ),
+                    ],
                   ),
-                ),
+                  const SizedBox(height: 10),
+
+                  // Recent Expenseces
+                  ExpenseListTile(),
+                ],
               ),
             ),
-            Consumer<AuthProvider>(
-              builder: (context, provider, child) {
-                return provider.isLoading
-                    ? CircularProgressIndicator()
-                    : AppElevatedButton(
-                        ButtonText: "Logout",
-                        width: double.infinity,
-                        height: 60,
-                        ContainerColor: Colors.blueAccent,
-                        borderRadius: 20,
-                        TextColor: Colors.white,
-                        fontSize: 20,
-                        onPressed: () async {
-                          try {
-                            await provider.logout();
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  "Account is Logout Sucessfully!",
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 18,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            );
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (_) => LoginScreen()),
-                            );
-                          } catch (e) {
-                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  e.toString(),
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 18,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            );
-                          }
-                        },
-                      );
-              },
-            ),
-          ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.indigo,
+          elevation: 5,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AddExpense()),
+            );
+          },
+          child: Icon(Icons.add, color: Colors.white),
         ),
       ),
     );

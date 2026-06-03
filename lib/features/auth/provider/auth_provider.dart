@@ -70,8 +70,11 @@ class AuthProvider extends ChangeNotifier {
 
   // profileData
   Future<DocumentSnapshot<Map<String, dynamic>>> getProfileData() async {
+    _isLoading = true;
+    notifyListeners();
     var profileData = await _authServices.profileData();
 
+    _isLoading = false;
     return profileData;
   }
 }
