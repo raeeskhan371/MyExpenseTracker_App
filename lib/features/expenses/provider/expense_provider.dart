@@ -27,16 +27,12 @@ class ExpenseProvider with ChangeNotifier {
   Future<void> addExpenses({
     required String title,
     required double amount,
-    required String category,
+    required String note,
   }) async {
     _isLoading = true;
     notifyListeners();
 
-    await _expenseServices.addExpense(
-      title: title,
-      amount: amount,
-      category: category,
-    );
+    await _expenseServices.addExpense(title: title, amount: amount, note: note);
 
     _isLoading = false;
     notifyListeners();
@@ -45,5 +41,24 @@ class ExpenseProvider with ChangeNotifier {
 
   Stream<QuerySnapshot> getExpneseTileData() {
     return _expenseServices.getExpneseTile();
+  }
+  // Update Expense
+
+  Future<void> updateExpense({
+    required String id,
+    required String title,
+    required double amount,
+  }) async {
+    await _expenseServices.updateExpenseButton(
+      id: id,
+      title: title,
+      amount: amount,
+    );
+  }
+
+  // deleteExpense
+
+  Future<void> deleteExpense({required String id}) async {
+    return await _expenseServices.deleteExpensebutton(id: id);
   }
 }

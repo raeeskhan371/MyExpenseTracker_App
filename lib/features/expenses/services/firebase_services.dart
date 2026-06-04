@@ -28,12 +28,12 @@ class ExpenseServices {
   Future<void> addExpense({
     required String title,
     required double amount,
-    required String category,
+    required String note,
   }) async {
     final expense = ExpenseModel(
       title: title,
       amount: amount,
-      category: category,
+      note: note,
       createdAt: DateTime.now(),
     );
 
@@ -59,5 +59,29 @@ class ExpenseServices {
         .doc(uid)
         .collection("expense")
         .snapshots();
+  }
+
+  // Update Expense
+
+  Future<void> updateExpenseButton({
+    required String id,
+    required String title,
+    required double amount,
+  }) async {
+    final uid = _auth.currentUser!.uid;
+    final userRefr = _firestore.collection("user").doc(uid);
+
+    await userRefr.collection("expense").doc(id).update({
+      "title": title,
+      "amount": amount,
+    });
+  }
+  // Delete Expenese
+
+  Future<void> deleteExpensebutton({required String id}) async {
+    final uid = _auth.currentUser!.uid;
+    final userRefr = _firestore.collection("user").doc(uid);
+
+    await userRefr.collection("expense").doc(id).delete();
   }
 }

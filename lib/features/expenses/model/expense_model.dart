@@ -1,13 +1,13 @@
 class ExpenseModel {
   final String title;
   final double amount;
-  final String category;
+  final String note;
   final DateTime createdAt;
 
   ExpenseModel({
     required this.title,
     required this.amount,
-    required this.category,
+    required this.note,
     required this.createdAt,
   });
 
@@ -15,7 +15,7 @@ class ExpenseModel {
     return {
       'title': title,
       'amount': amount,
-      'category': category,
+      'note': note,
       'createdAt': createdAt,
     };
   }
@@ -24,7 +24,7 @@ class ExpenseModel {
     return ExpenseModel(
       title: map['title'] ?? '',
       amount: (map['amount'] ?? 0).toDouble(),
-      category: map['category'] ?? '',
+      note: map['note'] ?? '',
       createdAt: DateTime.parse(map['createdAt']),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AppTextformField extends StatelessWidget {
@@ -10,6 +11,7 @@ class AppTextformField extends StatelessWidget {
   final TextInputType? textInputType;
   final int? maxline;
   final bool readOnly;
+  final List<TextInputFormatter>? inputformatter;
 
   AppTextformField({
     super.key,
@@ -21,6 +23,7 @@ class AppTextformField extends StatelessWidget {
     this.validator,
     this.maxline,
     this.readOnly = false,
+    this.inputformatter,
   });
 
   @override
@@ -29,6 +32,7 @@ class AppTextformField extends StatelessWidget {
       controller: controller,
       obscureText: obscureText,
       readOnly: readOnly,
+      inputFormatters: inputformatter,
       decoration: InputDecoration(
         hintText: hintText,
         prefixIcon: Padding(

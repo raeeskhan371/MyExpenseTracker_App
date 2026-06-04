@@ -5,13 +5,14 @@ import 'package:expense_tracker_app/features/widgets/add_expense_screen_widgtes/
 
 import 'package:expense_tracker_app/features/widgets/add_expense_screen_widgtes/category_item_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class AddExpense extends StatelessWidget {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController amountController = TextEditingController();
-  final TextEditingController categoryController = TextEditingController();
+  final TextEditingController notesController = TextEditingController();
 
   AddExpense({super.key});
 
@@ -57,6 +58,8 @@ class AddExpense extends StatelessWidget {
                   const SizedBox(height: 10),
 
                   AppTextformField(
+                    textInputType: TextInputType.number,
+                    inputformatter: [FilteringTextInputFormatter.digitsOnly],
                     controller: amountController,
                     hintText: "Rs0.00",
                     prefixIcon: Icons.monetization_on,
@@ -107,9 +110,10 @@ class AddExpense extends StatelessWidget {
                       ),
                     ],
                   ),
+
                   const SizedBox(height: 20),
                   Text(
-                    "Date",
+                    "Notes (Optional)",
                     style: GoogleFonts.poppins(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -121,18 +125,15 @@ class AddExpense extends StatelessWidget {
                   GestureDetector(
                     onTap: () {},
                     child: TextField(
-                      readOnly: true,
-                      controller: categoryController,
+                      readOnly: false,
+                      controller: notesController,
                       decoration: InputDecoration(
-                        hintText: "Select Date",
-                        suffixIcon: Icon(
-                          Icons.arrow_drop_down,
-                          size: 30,
-                          color: Colors.grey,
-                        ),
+                        contentPadding: EdgeInsets.only(top: 70),
+                        hintText: "Add note....",
+
                         prefixIcon: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 13),
-                          child: Icon(Icons.date_range, size: 22),
+                          child: Icon(Icons.note_alt, size: 28),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),
@@ -146,14 +147,7 @@ class AddExpense extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  Text(
-                    "Notes (Optional)",
-                    style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    ),
-                  ),
+
                   const SizedBox(height: 20),
 
                   const SizedBox(height: 20),
@@ -171,7 +165,7 @@ class AddExpense extends StatelessWidget {
                         amount:
                             double.tryParse(amountController.text.toString()) ??
                             0.00,
-                        category: categoryController.text,
+                        note: notesController.text,
                       );
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expense_tracker_app/features/expenses/provider/expense_provider.dart';
+import 'package:expense_tracker_app/features/expenses/screens/update_expense.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -23,16 +24,17 @@ class _ExpenseListTileState extends State<ExpenseListTile> {
       child: StreamBuilder(
         stream: context.read<ExpenseProvider>().getExpneseTileData(),
         builder: (context, snapshot) {
-          final docs = snapshot.data!.docs;
-
           if (!snapshot.hasData) {
             return CircularProgressIndicator(color: Colors.blue);
           }
+          final docs = snapshot.data!.docs;
 
           return ListView.builder(
             itemCount: docs.length,
             itemBuilder: (context, index) {
               final data = docs[index].data() as Map<String, dynamic>;
+              final expenseId = docs[index].id;
+
               final dateTime = (data["createdAt"] as Timestamp).toDate();
               final fromateData = DateFormat("dd/MM/yyyy").format(dateTime);
 
@@ -68,15 +70,43 @@ class _ExpenseListTileState extends State<ExpenseListTile> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                CircleAvatar(backgroundColor: Colors.orange),
-                                const SizedBox(height: 10),
-                                Text(
-                                  fromateData,
-                                  style: GoogleFonts.poppins(
-                                    color: Colors.grey,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                Row(
+                                  children: [
+                                    CircleAvatar(
+                                      backgroundColor: Colors.orange,
+                                      radius: 25,
+                                    ),
+                                    SizedBox(width: 15),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          data["title"].toString(),
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.grey.shade700,
+                                          ),
+                                        ),
+                                        Text(
+                                          fromateData,
+                                          style: GoogleFonts.poppins(
+                                            color: Colors.grey,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        // Text(
+                                        //   data["note"].toString(),
+                                        //   style: GoogleFonts.poppins(
+                                        //     fontSize: 16,
+                                        //     fontWeight: FontWeight.w700,
+                                        //     color: Colors.grey.shade700,
+                                        //   ),
+                                        // ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
+                                const SizedBox(height: 10),
                               ],
                             ),
                           ),
@@ -92,9 +122,9 @@ class _ExpenseListTileState extends State<ExpenseListTile> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  data["amount"].toString(),
+                                  "- ${data["amount"].toString()}",
                                   style: GoogleFonts.poppins(
-                                    color: Colors.grey,
+                                    color: Colors.redAccent,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -102,9 +132,38 @@ class _ExpenseListTileState extends State<ExpenseListTile> {
                                 Row(
                                   children: [
                                     Spacer(),
-                                    Icon(Icons.edit, color: Colors.blue),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => UpdateExpense(
+                                              title: data["title"],
+                                              expenseId: expenseId,
+                                              amount: data["amount"],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Icon(
+                                        Icons.edit,
+                                        color: Colors.blue,
+                                      ),
+                                    ),
                                     const SizedBox(width: 10),
-                                    Icon(Icons.delete, color: Colors.red),
+                                    GestureDetector(
+                                      onTap: () async {
+                                        print("DELETE CLICKED: $expenseId");
+
+                                        await context
+                                            .read<ExpenseProvider>()
+                                            .deleteExpense(id: expenseId);
+                                      },
+                                      child: Icon(
+                                        Icons.delete,
+                                        color: Colors.red,
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ],
