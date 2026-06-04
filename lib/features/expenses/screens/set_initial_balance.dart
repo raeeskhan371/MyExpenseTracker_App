@@ -1,6 +1,7 @@
 import 'package:expense_tracker_app/core/widgets/custome_ElevetedButton.dart';
 import 'package:expense_tracker_app/features/expenses/provider/expense_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class WalletScreen extends StatelessWidget {
@@ -10,11 +11,36 @@ class WalletScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Wallet")),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: const Text("Wallet"),
+        backgroundColor: Colors.white,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Row(
+              children: [
+                Text(
+                  "Set Your ",
+                  style: GoogleFonts.poppins(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  " Initial Balance",
+                  style: GoogleFonts.poppins(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blueAccent,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
             TextField(
               controller: setBalanceController,
               keyboardType: TextInputType.number,

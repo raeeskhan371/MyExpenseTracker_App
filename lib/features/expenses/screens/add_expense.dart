@@ -118,27 +118,30 @@ class AddExpense extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
 
-                  TextField(
-                    readOnly: false,
-                    controller: categoryController,
-                    decoration: InputDecoration(
-                      hintText: "Select Date",
-                      suffixIcon: Icon(
-                        Icons.arrow_drop_down,
-                        size: 30,
-                        color: Colors.grey,
-                      ),
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 13),
-                        child: Icon(Icons.date_range, size: 22),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blue),
-                        borderRadius: BorderRadius.circular(10),
+                  GestureDetector(
+                    onTap: () {},
+                    child: TextField(
+                      readOnly: true,
+                      controller: categoryController,
+                      decoration: InputDecoration(
+                        hintText: "Select Date",
+                        suffixIcon: Icon(
+                          Icons.arrow_drop_down,
+                          size: 30,
+                          color: Colors.grey,
+                        ),
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 13),
+                          child: Icon(Icons.date_range, size: 22),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
                     ),
                   ),

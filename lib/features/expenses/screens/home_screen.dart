@@ -15,10 +15,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: SafeArea(
           child: SizedBox(
             width: double.infinity,
 
@@ -76,17 +76,17 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.indigo,
-          elevation: 5,
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => AddExpense()),
-            );
-          },
-          child: Icon(Icons.add, color: Colors.white),
-        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.indigo,
+        elevation: 5,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddExpense()),
+          );
+        },
+        child: Icon(Icons.add, color: Colors.white),
       ),
     );
   }

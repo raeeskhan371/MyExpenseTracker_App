@@ -102,7 +102,7 @@ class authServices {
     }
   }
 
-  // GetUser Data for Profiel Screen using Future
+  // GetUser Data for profile Screen using Future
 
   Future<DocumentSnapshot<Map<String, dynamic>>> profileData() async {
     final uid = _auth.currentUser!.uid;
