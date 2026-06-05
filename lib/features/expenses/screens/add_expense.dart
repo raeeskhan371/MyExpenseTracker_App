@@ -30,6 +30,7 @@ class AddExpense extends StatelessWidget {
                   // toprow Add Expenese
                   AddExpenseToprow(topTrowText: "Add Expense"),
                   const SizedBox(height: 20),
+                  // Title Field
                   Text(
                     "Title",
                     style: GoogleFonts.poppins(
@@ -46,6 +47,7 @@ class AddExpense extends StatelessWidget {
                     prefixIcon: Icons.title_rounded,
                   ),
                   const SizedBox(height: 30),
+                  // Amount Field
                   Text(
                     "Amount",
                     style: GoogleFonts.poppins(
@@ -111,40 +113,41 @@ class AddExpense extends StatelessWidget {
                   ),
 
                   const SizedBox(height: 20),
-                  Text(
-                    "Notes (Optional)",
-                    style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
+                  // Notes field
+                  // Text(
+                  //   "Notes (Optional)",
+                  //   style: GoogleFonts.poppins(
+                  //     fontSize: 16,
+                  //     fontWeight: FontWeight.w600,
+                  //     color: Colors.black,
+                  //   ),
+                  // ),
+                  // const SizedBox(height: 20),
 
-                  GestureDetector(
-                    onTap: () {},
-                    child: TextField(
-                      readOnly: false,
-                      controller: notesController,
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(top: 70),
-                        hintText: "Add note....",
+                  // GestureDetector(
+                  //   onTap: () {},
+                  //   child: TextField(
+                  //     readOnly: false,
+                  //     controller: notesController,
+                  //     decoration: InputDecoration(
+                  //       contentPadding: EdgeInsets.only(top: 70),
+                  //       hintText: "Add note....",
 
-                        prefixIcon: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 13),
-                          child: Icon(Icons.note_alt, size: 28),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    ),
-                  ),
+                  //       prefixIcon: Padding(
+                  //         padding: const EdgeInsets.symmetric(horizontal: 13),
+                  //         child: Icon(Icons.note_alt, size: 28),
+                  //       ),
+                  //       enabledBorder: OutlineInputBorder(
+                  //         borderSide: BorderSide(color: Colors.grey),
+                  //         borderRadius: BorderRadius.circular(10),
+                  //       ),
+                  //       focusedBorder: OutlineInputBorder(
+                  //         borderSide: BorderSide(color: Colors.blue),
+                  //         borderRadius: BorderRadius.circular(10),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   const SizedBox(height: 20),
 
                   const SizedBox(height: 20),

@@ -9,13 +9,6 @@ class AddExpenseToprow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Icon(Icons.arrow_back_ios_new, color: Colors.black),
-        ),
-
         Expanded(
           child: Center(
             child: Text(
