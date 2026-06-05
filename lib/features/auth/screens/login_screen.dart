@@ -218,7 +218,7 @@ class LoginScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 50),
                       child: Row(
                         children: [
-                          Container(
+                          SizedBox(
                             width: 50,
                             height: 50,
                             child: Padding(
@@ -283,6 +283,5 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }

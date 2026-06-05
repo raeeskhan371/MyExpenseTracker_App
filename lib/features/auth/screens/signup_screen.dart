@@ -3,7 +3,6 @@ import 'package:expense_tracker_app/features/auth/screens/login_screen.dart';
 import 'package:expense_tracker_app/core/widgets/custome_ElevetedButton.dart';
 import 'package:expense_tracker_app/core/widgets/custome_Textfield.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -217,7 +216,7 @@ class SignupScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 50),
                       child: Row(
                         children: [
-                          Container(
+                          SizedBox(
                             width: 50,
                             height: 50,
                             child: Padding(

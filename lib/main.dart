@@ -1,13 +1,6 @@
 import 'package:expense_tracker_app/features/auth/provider/auth_provider.dart';
 import 'package:expense_tracker_app/features/auth/screens/auth_gate.dart';
-import 'package:expense_tracker_app/features/auth/screens/forgot_screen.dart';
-import 'package:expense_tracker_app/features/auth/screens/login_screen.dart';
-import 'package:expense_tracker_app/features/auth/screens/profile_screen.dart';
-import 'package:expense_tracker_app/features/auth/screens/signup_screen.dart';
 import 'package:expense_tracker_app/features/expenses/provider/expense_provider.dart';
-import 'package:expense_tracker_app/features/expenses/screens/add_expense.dart';
-import 'package:expense_tracker_app/features/expenses/screens/home_screen.dart';
-
 import 'package:expense_tracker_app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

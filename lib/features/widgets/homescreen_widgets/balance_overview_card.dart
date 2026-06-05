@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class BalanceOverviewCard extends StatelessWidget {
-  BalanceOverviewCard({super.key});
+  const BalanceOverviewCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,22 +45,18 @@ class BalanceOverviewCard extends StatelessWidget {
             // Balance And Wallet Icon
             Row(
               children: [
-                StreamBuilder(
-                  stream: context.read<ExpenseProvider>().getUser(),
+                FutureBuilder(
+                  future: context.read<ExpenseProvider>().userReamingBalance(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return CircularProgressIndicator();
                     }
 
-                    if (!snapshot.hasData ||
-                        snapshot.data == null ||
-                        !snapshot.data!.exists) {
+                    if (!snapshot.hasData || snapshot.data == null) {
                       return Text("No Data");
                     }
-                    final userData =
-                        snapshot.data!.data() as Map<String, dynamic>;
-                    ;
-                    final balance = userData["initialBalance"] ?? 0.toString();
+                    var balance = snapshot.data;
+
                     return Text(
                       balance.toString(),
                       style: GoogleFonts.poppins(

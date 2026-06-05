@@ -13,7 +13,7 @@ class UpdateExpense extends StatefulWidget {
   final double amount;
   final String expenseId;
 
-  UpdateExpense({
+  const UpdateExpense({
     super.key,
     required this.title,
     required this.expenseId,
@@ -202,6 +202,5 @@ class _UpdateExpenseState extends State<UpdateExpense> {
         ),
       ),
     );
-    ;
   }
 }

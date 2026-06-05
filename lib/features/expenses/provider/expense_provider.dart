@@ -3,7 +3,7 @@ import 'package:expense_tracker_app/features/expenses/services/firebase_services
 import 'package:flutter/material.dart';
 
 class ExpenseProvider with ChangeNotifier {
-  ExpenseServices _expenseServices = ExpenseServices();
+  final ExpenseServices _expenseServices = ExpenseServices();
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
@@ -60,5 +60,13 @@ class ExpenseProvider with ChangeNotifier {
 
   Future<void> deleteExpense({required String id}) async {
     return await _expenseServices.deleteExpensebutton(id: id);
+  }
+
+  // User Reamining Balance
+
+  Future<double> userReamingBalance() async {
+    double fetchRemainingBalance = await _expenseServices
+        .fetchRemainingBalance();
+    return fetchRemainingBalance;
   }
 }

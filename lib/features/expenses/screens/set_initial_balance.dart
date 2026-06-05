@@ -1,12 +1,14 @@
 import 'package:expense_tracker_app/core/widgets/custome_ElevetedButton.dart';
 import 'package:expense_tracker_app/features/expenses/provider/expense_provider.dart';
+import 'package:expense_tracker_app/features/expenses/screens/Home_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class WalletScreen extends StatelessWidget {
   final TextEditingController setBalanceController = TextEditingController();
-  WalletScreen({super.key});
+  final VoidCallback? setInitialBalance;
+  WalletScreen({super.key, required this.setInitialBalance});
 
   @override
   Widget build(BuildContext context) {

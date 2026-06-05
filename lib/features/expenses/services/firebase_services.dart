@@ -3,8 +3,8 @@ import 'package:expense_tracker_app/features/expenses/model/expense_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class ExpenseServices {
-  FirebaseAuth _auth = FirebaseAuth.instance;
-  FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   // Set InitialBalace Function
   Future<void> setInitialBalance({required double balance}) async {
@@ -83,5 +83,23 @@ class ExpenseServices {
     final userRefr = _firestore.collection("user").doc(uid);
 
     await userRefr.collection("expense").doc(id).delete();
+  }
+
+  /// Fetch Reaming Balance
+
+  Future<double> fetchRemainingBalance() async {
+    final uid = _auth.currentUser!.uid;
+    final userRef = _firestore.collection("user").doc(uid);
+    final userDoc = await _firestore.collection("user").doc(uid).get();
+    final expenseSnapShot = await userRef.collection("expense").get();
+
+    final initalBalance = (userDoc["initialBalance"] as num).toDouble();
+    double totalExpense = 0;
+
+    for (var e in expenseSnapShot.docs) {
+      totalExpense += (e["amount"] as num).toDouble();
+    }
+    final double remaining = initalBalance - totalExpense;
+    return remaining < 0 ? 0.00 : remaining;
   }
 }

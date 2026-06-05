@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class ProfileFormScreen extends StatelessWidget {
-  ProfileFormScreen({super.key});
+  const ProfileFormScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +80,7 @@ class ProfileFormScreen extends StatelessWidget {
                 FutureBuilder(
                   future: context.read<AuthProvider>().getProfileData(),
                   builder: (context, Snapshot) {
-                    if (!Snapshot.hasData || Snapshot == null) {
+                    if (!Snapshot.hasData) {
                       return CircularProgressIndicator(color: Colors.blue);
                     }
                     final doc = Snapshot.data!.data() as Map<String, dynamic>;
@@ -109,7 +109,7 @@ class ProfileFormScreen extends StatelessWidget {
                 FutureBuilder(
                   future: context.read<AuthProvider>().getProfileData(),
                   builder: (context, Snapshot) {
-                    if (!Snapshot.hasData || Snapshot == null) {
+                    if (!Snapshot.hasData) {
                       return CircularProgressIndicator(color: Colors.blue);
                     }
                     final doc = Snapshot.data!.data() as Map<String, dynamic>;
@@ -137,7 +137,7 @@ class ProfileFormScreen extends StatelessWidget {
                 FutureBuilder(
                   future: context.read<AuthProvider>().getProfileData(),
                   builder: (context, Snapshot) {
-                    if (!Snapshot.hasData || Snapshot == null) {
+                    if (!Snapshot.hasData) {
                       return CircularProgressIndicator(color: Colors.blue);
                     }
                     final doc = Snapshot.data!.data() as Map<String, dynamic>;
@@ -166,7 +166,7 @@ class ProfileFormScreen extends StatelessWidget {
                 FutureBuilder(
                   future: context.read<AuthProvider>().getProfileData(),
                   builder: (context, Snapshot) {
-                    if (!Snapshot.hasData || Snapshot == null) {
+                    if (!Snapshot.hasData) {
                       return CircularProgressIndicator(color: Colors.blue);
                     }
                     final doc = Snapshot.data!.data() as Map<String, dynamic>;

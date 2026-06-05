@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expense_tracker_app/features/auth/model/authModel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 class authServices {
   final FirebaseAuth _auth = FirebaseAuth.instance;

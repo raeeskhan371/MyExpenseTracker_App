@@ -12,7 +12,7 @@ class AppElevatedButton extends StatelessWidget {
   final Color TextColor;
   final String ButtonText;
 
-  AppElevatedButton({
+  const AppElevatedButton({
     super.key,
     required this.ButtonText,
     required this.width,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AppTextformField extends StatelessWidget {
   final TextEditingController? controller;
@@ -13,7 +12,7 @@ class AppTextformField extends StatelessWidget {
   final bool readOnly;
   final List<TextInputFormatter>? inputformatter;
 
-  AppTextformField({
+  const AppTextformField({
     super.key,
     this.controller,
     this.hintText,

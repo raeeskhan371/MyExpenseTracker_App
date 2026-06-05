@@ -2,7 +2,6 @@ import 'package:expense_tracker_app/core/widgets/custome_ElevetedButton.dart';
 import 'package:expense_tracker_app/core/widgets/custome_Textfield.dart';
 import 'package:expense_tracker_app/features/expenses/provider/expense_provider.dart';
 import 'package:expense_tracker_app/features/widgets/add_expense_screen_widgtes/add_expense_topRow.dart';
-
 import 'package:expense_tracker_app/features/widgets/add_expense_screen_widgtes/category_item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,8 +12,8 @@ class AddExpense extends StatelessWidget {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController amountController = TextEditingController();
   final TextEditingController notesController = TextEditingController();
-
-  AddExpense({super.key});
+  final VoidCallback onExpenseAdd;
+  AddExpense({super.key, required this.onExpenseAdd});
 
   @override
   Widget build(BuildContext context) {
@@ -167,13 +166,14 @@ class AddExpense extends StatelessWidget {
                             0.00,
                         note: notesController.text,
                       );
+
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text("Add Expense Successfully!"),
                           backgroundColor: Colors.blue,
                         ),
                       );
-                      Navigator.pop(context);
+                      onExpenseAdd();
                     },
                   ),
                 ],

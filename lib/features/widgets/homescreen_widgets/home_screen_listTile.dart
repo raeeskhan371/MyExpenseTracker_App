@@ -61,7 +61,7 @@ class _ExpenseListTileState extends State<ExpenseListTile> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
+                        SizedBox(
                           height: 100,
                           width: 180,
 
@@ -112,7 +112,7 @@ class _ExpenseListTileState extends State<ExpenseListTile> {
                           ),
                         ),
 
-                        Container(
+                        SizedBox(
                           height: 100,
                           width: 180,
 
@@ -145,23 +145,43 @@ class _ExpenseListTileState extends State<ExpenseListTile> {
                                           ),
                                         );
                                       },
-                                      child: Icon(
-                                        Icons.edit,
-                                        color: Colors.blue,
+                                      child: Container(
+                                        height: 40,
+                                        width: 40,
+                                        decoration: BoxDecoration(
+                                          color: Colors.blue.withOpacity(0.1),
+                                          borderRadius: BorderRadius.circular(
+                                            100,
+                                          ),
+                                        ),
+                                        child: Icon(
+                                          Icons.edit_outlined,
+                                          color: Colors.blue,
+                                        ),
                                       ),
                                     ),
                                     const SizedBox(width: 10),
                                     GestureDetector(
                                       onTap: () async {
-                                        print("DELETE CLICKED: $expenseId");
-
                                         await context
                                             .read<ExpenseProvider>()
                                             .deleteExpense(id: expenseId);
                                       },
-                                      child: Icon(
-                                        Icons.delete,
-                                        color: Colors.red,
+                                      child: Container(
+                                        height: 40,
+                                        width: 40,
+                                        decoration: BoxDecoration(
+                                          color: Colors.redAccent.withOpacity(
+                                            0.1,
+                                          ),
+                                          borderRadius: BorderRadius.circular(
+                                            100,
+                                          ),
+                                        ),
+                                        child: Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                        ),
                                       ),
                                     ),
                                   ],
