@@ -69,4 +69,9 @@ class ExpenseProvider with ChangeNotifier {
         .fetchRemainingBalance();
     return fetchRemainingBalance;
   }
+
+  Future<String> fetchingUserName() async {
+    var userName = await _expenseServices.getUserName();
+    return userName;
+  }
 }

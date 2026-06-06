@@ -102,4 +102,14 @@ class ExpenseServices {
     final double remaining = initalBalance - totalExpense;
     return remaining < 0 ? 0.00 : remaining;
   }
+
+  //UserName Fetching
+
+  Future<String> getUserName() async {
+    final uid = _auth.currentUser!.uid;
+    var docs = await _firestore.collection("user").doc(uid).get();
+
+    final userName = (docs["name"]).toString();
+    return userName;
+  }
 }

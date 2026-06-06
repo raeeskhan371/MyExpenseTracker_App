@@ -12,6 +12,7 @@ class AppTextformField extends StatelessWidget {
   final bool readOnly;
   final List<TextInputFormatter>? inputformatter;
   final IconData? suffix;
+  final TextCapitalization textCap;
 
   const AppTextformField({
     super.key,
@@ -25,6 +26,7 @@ class AppTextformField extends StatelessWidget {
     this.readOnly = false,
     this.inputformatter,
     this.suffix,
+    this.textCap = TextCapitalization.none,
   });
 
   @override
@@ -34,6 +36,7 @@ class AppTextformField extends StatelessWidget {
       obscureText: obscureText,
       readOnly: readOnly,
       inputFormatters: inputformatter,
+      textCapitalization: textCap,
 
       decoration: InputDecoration(
         suffix: Icon(suffix),

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:expense_tracker_app/core/widgets/custome_ElevetedButton.dart';
 import 'package:expense_tracker_app/core/widgets/custome_Textfield.dart';
 import 'package:expense_tracker_app/features/auth/provider/auth_provider.dart';
 import 'package:expense_tracker_app/features/expenses/screens/set_initial_balance.dart';
@@ -184,6 +185,18 @@ class ProfileFormScreen extends StatelessWidget {
                 ),
 
                 const SizedBox(height: 30),
+                AppElevatedButton(
+                  ButtonText: "Logout",
+                  width: double.infinity,
+                  height: 60,
+                  ContainerColor: Colors.indigo.shade400,
+                  borderRadius: 10,
+                  TextColor: Colors.white,
+                  fontSize: 24,
+                  onPressed: () {
+                    context.read<AuthProvider>().logout();
+                  },
+                ),
               ],
             ),
           ),

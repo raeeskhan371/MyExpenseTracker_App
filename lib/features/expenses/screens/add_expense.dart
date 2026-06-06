@@ -42,6 +42,8 @@ class AddExpense extends StatelessWidget {
                   const SizedBox(height: 10),
 
                   AppTextformField(
+                    textInputType: TextInputType.text,
+                    textCap: TextCapitalization.sentences,
                     controller: titleController,
                     hintText: "eg.Coffe,Lunch...",
                     prefixIcon: Icons.title_rounded,

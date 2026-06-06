@@ -20,18 +20,18 @@ class _BottomeNavBarState extends State<BottomeNavBar> {
   }
 
   int selectedIndex = 0;
+  late List<Widget> screens = [
+    HomeScreen(),
+    AddExpense(
+      onExpenseAdd: () {
+        changeTap(0);
+      },
+    ),
+    ProfileFormScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> screens = [
-      HomeScreen(),
-      AddExpense(
-        onExpenseAdd: () {
-          changeTap(0);
-        },
-      ),
-      ProfileFormScreen(),
-    ];
     return Scaffold(
       body: IndexedStack(index: selectedIndex, children: screens),
       bottomNavigationBar: BottomNavigationBar(

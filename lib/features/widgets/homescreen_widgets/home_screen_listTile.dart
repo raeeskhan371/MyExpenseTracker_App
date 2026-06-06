@@ -26,9 +26,42 @@ class _ExpenseListTileState extends State<ExpenseListTile> {
         stream: context.read<ExpenseProvider>().getExpneseTileData(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return CircularProgressIndicator(color: Colors.blue);
+            return SizedBox(
+              height: 300,
+              width: 300,
+              child: CircularProgressIndicator(color: Colors.blue),
+            );
           }
           final docs = snapshot.data!.docs;
+
+          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+            return Center(
+              child: Column(
+                children: [
+                  const SizedBox(height: 80),
+                  Icon(
+                    Icons.receipt_long,
+                    size: 70,
+                    color: Colors.grey.shade400,
+                  ),
+                  const SizedBox(height: 15),
+                  Text(
+                    "No Expenses Yet",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    "Start adding your expenses",
+                    style: TextStyle(fontSize: 14, color: Colors.grey),
+                  ),
+                ],
+              ),
+            );
+          }
 
           return ListView.builder(
             itemCount: docs.length,

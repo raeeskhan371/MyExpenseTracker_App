@@ -79,6 +79,8 @@ class SignupScreen extends StatelessWidget {
                         ),
 
                         AppTextformField(
+                          textCap: TextCapitalization.words,
+                          textInputType: TextInputType.text,
                           controller: nameCoutroller,
                           hintText: "Enter full name",
                           prefixIcon: Icons.person_2_outlined,
@@ -93,6 +95,7 @@ class SignupScreen extends StatelessWidget {
                           ),
                         ),
                         AppTextformField(
+                          textInputType: TextInputType.emailAddress,
                           controller: emailController,
                           hintText: "Enter your email",
                           prefixIcon: Icons.mail,
