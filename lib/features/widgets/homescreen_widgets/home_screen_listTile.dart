@@ -18,7 +18,7 @@ class _ExpenseListTileState extends State<ExpenseListTile> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 600,
+      height: 500,
       width: double.infinity,
 
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),

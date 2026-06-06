@@ -53,7 +53,13 @@ class BalanceOverviewCard extends StatelessWidget {
                     }
 
                     if (!snapshot.hasData || snapshot.data == null) {
-                      return Text("No Data");
+                      return Text(
+                        "0.00",
+                        style: GoogleFonts.poppins(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ~),
+                      );
                     }
                     var balance = snapshot.data;
 

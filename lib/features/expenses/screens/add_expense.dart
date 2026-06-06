@@ -8,12 +8,40 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class AddExpense extends StatelessWidget {
-  final TextEditingController titleController = TextEditingController();
-  final TextEditingController amountController = TextEditingController();
-  final TextEditingController notesController = TextEditingController();
+class AddExpense extends StatefulWidget {
   final VoidCallback onExpenseAdd;
   AddExpense({super.key, required this.onExpenseAdd});
+
+  @override
+  State<AddExpense> createState() => _AddExpenseState();
+}
+
+class _AddExpenseState extends State<AddExpense> {
+  final TextEditingController titleController = TextEditingController();
+
+  final TextEditingController amountController = TextEditingController();
+
+  final TextEditingController notesController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    clearFields();
+  }
+
+  void clearFields() {
+    titleController.clear();
+    amountController.clear();
+    notesController.clear();
+  }
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    amountController.dispose();
+    notesController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -166,19 +194,20 @@ class AddExpense extends StatelessWidget {
                     onPressed: () async {
                       await context.read<ExpenseProvider>().addExpenses(
                         title: titleController.text,
-                        amount:
-                            double.tryParse(amountController.text.toString()) ??
-                            0.00,
+                        amount: double.tryParse(amountController.text) ?? 0.0,
                         note: notesController.text,
                       );
 
+                      clearFields();
+
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
+                        const SnackBar(
                           content: Text("Add Expense Successfully!"),
                           backgroundColor: Colors.blue,
                         ),
                       );
-                      onExpenseAdd();
+
+                      widget.onExpenseAdd();
                     },
                   ),
                 ],

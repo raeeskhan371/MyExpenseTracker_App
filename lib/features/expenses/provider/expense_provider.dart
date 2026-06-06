@@ -7,6 +7,10 @@ class ExpenseProvider with ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
+  void loading(bool value) {
+    _isLoading = value;
+  }
+
   Future<void> setBalance({required double balance}) async {
     _isLoading = true;
     notifyListeners();
@@ -29,12 +33,12 @@ class ExpenseProvider with ChangeNotifier {
     required double amount,
     required String note,
   }) async {
-    _isLoading = true;
+    loading(true);
     notifyListeners();
 
     await _expenseServices.addExpense(title: title, amount: amount, note: note);
 
-    _isLoading = false;
+    loading(false);
     notifyListeners();
   }
   // get expenseTIle
@@ -49,11 +53,15 @@ class ExpenseProvider with ChangeNotifier {
     required String title,
     required double amount,
   }) async {
+    loading(true);
+    notifyListeners();
     await _expenseServices.updateExpenseButton(
       id: id,
       title: title,
       amount: amount,
     );
+    loading(false);
+    notifyListeners();
   }
 
   // deleteExpense
