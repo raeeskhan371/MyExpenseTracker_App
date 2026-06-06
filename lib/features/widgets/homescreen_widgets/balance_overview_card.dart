@@ -58,7 +58,7 @@ class BalanceOverviewCard extends StatelessWidget {
                         style: GoogleFonts.poppins(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                        ~),
+                        ),
                       );
                     }
                     var balance = snapshot.data;
