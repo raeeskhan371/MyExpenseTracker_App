@@ -49,11 +49,13 @@ class BalanceOverviewCard extends StatelessWidget {
                   future: context.read<ExpenseProvider>().userReamingBalance(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CircularProgressIndicator();
+                      return CircularProgressIndicator(
+                        backgroundColor: Colors.white,
+                      );
                     }
 
                     if (!snapshot.hasData || snapshot.data == null) {
-                      return Text("No Data");
+                      return Text("0.00");
                     }
                     var balance = snapshot.data;
 

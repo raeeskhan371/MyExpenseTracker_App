@@ -127,72 +127,45 @@ class _UpdateExpenseState extends State<UpdateExpense> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 20),
-                  Text(
-                    "Date",
-                    style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
 
-                  TextField(
-                    readOnly: true,
-
-                    decoration: InputDecoration(
-                      hintText: "Select Date",
-                      suffixIcon: Icon(
-                        Icons.arrow_drop_down,
-                        size: 30,
-                        color: Colors.grey,
-                      ),
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 13),
-                        child: Icon(Icons.date_range, size: 22),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blue),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
                   const SizedBox(height: 20),
-                  Text(
-                    "Notes (Optional)",
-                    style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  AppTextformField(
-                    hintText: "Add Note...",
-                    prefixIcon: Icons.note,
-                    maxline: 5,
-                  ),
-                  const SizedBox(height: 20),
-                  AppElevatedButton(
-                    ButtonText: "Update Expense",
-                    width: double.infinity,
-                    height: 55,
-                    ContainerColor: Colors.indigoAccent,
-                    borderRadius: 10,
-                    TextColor: Colors.white,
-                    fontSize: 20,
-                    onPressed: () async {
-                      await context.read<ExpenseProvider>().updateExpense(
-                        id: widget.expenseId,
-                        title: titleController.text,
-                        amount: double.parse(amountController.text),
-                      );
-                      Navigator.pop(context);
+                  Consumer<ExpenseProvider>(
+                    builder: (context, provider, child) {
+                      return provider.isLoading
+                          ? Container(
+                              width: 370,
+                              height: 55,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.indigoAccent,
+                              ),
+                              child: Center(
+                                child: CircularProgressIndicator(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            )
+                          : AppElevatedButton(
+                              ButtonText: "Update Expense",
+                              width: double.infinity,
+                              height: 55,
+                              ContainerColor: Colors.indigoAccent,
+                              borderRadius: 10,
+                              TextColor: Colors.white,
+                              fontSize: 20,
+                              onPressed: () async {
+                                await context
+                                    .read<ExpenseProvider>()
+                                    .updateExpense(
+                                      id: widget.expenseId,
+                                      title: titleController.text,
+                                      amount: double.parse(
+                                        amountController.text,
+                                      ),
+                                    );
+                                Navigator.pop(context);
+                              },
+                            );
                     },
                   ),
                 ],

@@ -11,6 +11,8 @@ class AppTextformField extends StatelessWidget {
   final int? maxline;
   final bool readOnly;
   final List<TextInputFormatter>? inputformatter;
+  final IconData? suffix;
+  final TextCapitalization textCap;
 
   const AppTextformField({
     super.key,
@@ -23,6 +25,8 @@ class AppTextformField extends StatelessWidget {
     this.maxline,
     this.readOnly = false,
     this.inputformatter,
+    this.suffix,
+    this.textCap = TextCapitalization.none,
   });
 
   @override
@@ -32,7 +36,10 @@ class AppTextformField extends StatelessWidget {
       obscureText: obscureText,
       readOnly: readOnly,
       inputFormatters: inputformatter,
+      textCapitalization: textCap,
+
       decoration: InputDecoration(
+        suffix: Icon(suffix),
         hintText: hintText,
         prefixIcon: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 13),
@@ -43,7 +50,7 @@ class AppTextformField extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.blueAccent),
+          borderSide: BorderSide(color: Colors.indigo.shade400),
           borderRadius: BorderRadius.circular(20),
         ),
       ),

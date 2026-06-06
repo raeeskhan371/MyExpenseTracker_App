@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expense_tracker_app/features/expenses/provider/expense_provider.dart';
 import 'package:expense_tracker_app/features/expenses/screens/update_expense.dart';
+import 'package:expense_tracker_app/features/widgets/homescreen_widgets/alert_box.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -40,7 +41,7 @@ class _ExpenseListTileState extends State<ExpenseListTile> {
 
               return Container(
                 margin: EdgeInsets.only(bottom: 10),
-                height: 100,
+                height: 120,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
@@ -66,18 +67,17 @@ class _ExpenseListTileState extends State<ExpenseListTile> {
                           width: 180,
 
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 10, top: 20),
+                            padding: const EdgeInsets.only(left: 10, top: 30),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Row(
                                   children: [
-                                    CircleAvatar(
-                                      backgroundColor: Colors.orange,
-                                      radius: 25,
-                                    ),
                                     SizedBox(width: 15),
+
                                     Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           data["title"].toString(),
@@ -87,12 +87,25 @@ class _ExpenseListTileState extends State<ExpenseListTile> {
                                             color: Colors.grey.shade700,
                                           ),
                                         ),
-                                        Text(
-                                          fromateData,
-                                          style: GoogleFonts.poppins(
-                                            color: Colors.grey,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                        const SizedBox(height: 10),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Icon(
+                                              Icons.calendar_month_outlined,
+                                              color: Colors.grey,
+                                              size: 16,
+                                            ),
+                                            const SizedBox(width: 5),
+                                            Text(
+                                              fromateData,
+                                              style: GoogleFonts.poppins(
+                                                color: Colors.grey,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                         // Text(
                                         //   data["note"].toString(),
@@ -113,7 +126,7 @@ class _ExpenseListTileState extends State<ExpenseListTile> {
                         ),
 
                         SizedBox(
-                          height: 100,
+                          height: 120,
                           width: 180,
 
                           child: Padding(
@@ -122,10 +135,11 @@ class _ExpenseListTileState extends State<ExpenseListTile> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  "- ${data["amount"].toString()}",
+                                  "-Rs. ${data["amount"].toString()}",
                                   style: GoogleFonts.poppins(
                                     color: Colors.redAccent,
                                     fontWeight: FontWeight.bold,
+                                    fontSize: 18,
                                   ),
                                 ),
                                 const SizedBox(height: 20),
@@ -160,12 +174,17 @@ class _ExpenseListTileState extends State<ExpenseListTile> {
                                         ),
                                       ),
                                     ),
-                                    const SizedBox(width: 10),
+                                    const SizedBox(width: 15),
                                     GestureDetector(
                                       onTap: () async {
-                                        await context
-                                            .read<ExpenseProvider>()
-                                            .deleteExpense(id: expenseId);
+                                        await showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return AppAlertBox(
+                                              expenseId: expenseId,
+                                            );
+                                          },
+                                        );
                                       },
                                       child: Container(
                                         height: 40,

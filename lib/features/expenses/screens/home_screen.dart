@@ -34,26 +34,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   // Main top Container
                   BalanceOverviewCard(),
                   const SizedBox(height: 10),
+
                   // FinancialSummry Card
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      FinancialSummaryCard(
-                        transactionIcon: Icons.arrow_downward,
-                        smallContainer: Colors.green,
-                        MonthText: Colors.green,
-                        Amount: "3000,0.00",
-                        transactionType: "Income",
-                      ),
-                      FinancialSummaryCard(
-                        transactionIcon: Icons.arrow_upward,
-                        smallContainer: Colors.redAccent,
-                        MonthText: Colors.redAccent,
-                        Amount: "2000,0.00",
-                        transactionType: "Expense",
-                      ),
-                    ],
-                  ),
                   const SizedBox(height: 10),
 
                   // Recent Expenseces
@@ -63,19 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.indigo,
-        elevation: 5,
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => WalletScreen(setInitialBalance: () {}),
-            ),
-          );
-        },
-        child: Icon(Icons.add, color: Colors.white),
       ),
     );
   }

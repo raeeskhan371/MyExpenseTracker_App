@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:expense_tracker_app/core/widgets/custome_ElevetedButton.dart';
 import 'package:expense_tracker_app/core/widgets/custome_Textfield.dart';
 import 'package:expense_tracker_app/features/auth/provider/auth_provider.dart';
+import 'package:expense_tracker_app/features/expenses/screens/set_initial_balance.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -21,13 +23,6 @@ class ProfileFormScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-
-                  child: Icon(Icons.arrow_back_ios),
-                ),
                 const SizedBox(height: 20),
 
                 // ICON
@@ -39,12 +34,16 @@ class ProfileFormScreen extends StatelessWidget {
                     color: Colors.white,
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.blue.withOpacity(0.2),
+                        color: Colors.indigo.withOpacity(0.5),
                         blurRadius: 10,
                       ),
                     ],
                   ),
-                  child: const Icon(Icons.person, size: 45, color: Colors.blue),
+                  child: Icon(
+                    Icons.person,
+                    size: 45,
+                    color: Colors.indigo.shade400,
+                  ),
                 ),
 
                 const SizedBox(height: 15),
@@ -185,13 +184,36 @@ class ProfileFormScreen extends StatelessWidget {
                   },
                 ),
 
-                const SizedBox(height: 30),
+                const SizedBox(height: 20),
 
-                // SAVE BUTTON (DUMMY)
+                AppElevatedButton(
+                  ButtonText: "Logout",
+                  width: double.infinity,
+                  height: 60,
+                  ContainerColor: Colors.indigo.shade400,
+                  borderRadius: 10,
+                  TextColor: Colors.white,
+                  fontSize: 24,
+                  onPressed: () {
+                    context.read<AuthProvider>().logout();
+                  },
+                ),
               ],
             ),
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.indigo.shade400,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => WalletScreen(setInitialBalance: () {}),
+            ),
+          );
+        },
+        child: Center(child: Icon(Icons.add, color: Colors.white)),
       ),
     );
   }
