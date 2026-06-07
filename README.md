@@ -22,22 +22,24 @@ This app helps users track their income, expenses, and remaining balance in real
 
 ## 📸 App Screenshots
 
+## 📸 App Screenshots
+
 <p align="center">
-  <img src="screen shots/Home Screen.jpeg" width="200"/>
-  <img src="screen shots/Login Screen.jpeg" width="200"/>
-  <img src="screen shots/Signup Screen.jpeg" width="200"/>
+  <img src="screenshots/Home Screen.jpeg" width="200"/>
+  <img src="screenshots/Login Screen.jpeg" width="200"/>
+  <img src="screenshots/Signup Screen.jpeg" width="200"/>
 </p>
 
 <p align="center">
-  <img src="screen shots/SetBalance Screen.jpeg" width="200"/>
-  <img src="screen shots/AddExpense Screen.jpeg" width="200"/>
-  <img src="screen shots/Update Screen.jpeg" width="200"/>
+  <img src="screenshots/SetBalance Screen.jpeg" width="200"/>
+  <img src="screenshots/AddExpense Screen.jpeg" width="200"/>
+  <img src="screenshots/Update Screen.jpeg" width="200"/>
 </p>
 
 <p align="center">
-  <img src="screen shots/Delete Screen.jpeg" width="200"/>
-  <img src="screen shots/Profile Screen.jpeg" width="200"/>
-  <img src="screen shots/ForgotPassword Screen.jpeg" width="200"/>
+  <img src="screenshots/Delete Screen.jpeg" width="200"/>
+  <img src="screenshots/Profile Screen.jpeg" width="200"/>
+  <img src="screenshots/ForgotPassword Screen.jpeg" width="200"/>
 </p>
 
 ---
