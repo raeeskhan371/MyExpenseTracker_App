@@ -23,31 +23,31 @@ This app helps users track their income, expenses, and remaining balance in real
 # 📸 App Screenshots
 
 ## 🏠 Home Screen
-![Home](screen_shots/Home_Screen.jpeg)
+![Home](screenshots/Home_Screen.jpeg)
 
 ## 🔐 Login Screen
-![Login](screen_shots/Login_Screen.jpeg)
+![Login](screenshots/Login_Screen.jpeg)
 
 ## 🆕 Signup Screen
-![Signup](screen_shots/Singup_Screen.jpeg)
+![Signup](screenshots/Singup_Screen.jpeg)
 
 ## 💵 Set Balance Screen
-![Balance](screen_shots/SetBalance_Screen.jpeg)
+![Balance](screenshots/SetBalance_Screen.jpeg)
 
 ## ➕ Add Expense Screen
-![Add Expense](screen_shots/AddExpense_Screen.jpeg)
+![Add Expense](screenshots/AddExpense_Screen.jpeg)
 
 ## ✏️ Update Expense Screen
-![Update](screen_shots/Update_Screen.jpeg)
+![Update](screenshots/Update_Screen.jpeg)
 
 ## 🗑 Delete Expense
-![Delete](screen_shots/Delete_Screen.jpeg)
+![Delete](screenshots/Delete_Screen.jpeg)
 
 ## 🧑 Profile Screen
-![Profile](screen_shots/Profile_Screen.jpeg)
+![Profile](screenshots/Profile_Screen.jpeg)
 
 ## 🔁 Forgot Password Screen
-![Forgot](screen_shots/ForgotPassword_Screen.jpeg)
+![Forgot](screenshots/ForgotPassword_Screen.jpeg)
 
 ---
 
