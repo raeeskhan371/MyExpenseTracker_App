@@ -20,34 +20,25 @@ This app helps users track their income, expenses, and remaining balance in real
 
 ---
 
-# 📸 App Screenshots
+## 📸 App Screenshots
 
-## 🏠 Home Screen
-![Home](screenshots/Home_Screen.jpeg)
+<p align="center">
+  <img src="screen shots/Home Screen.jpeg" width="200"/>
+  <img src="screen shots/Login Screen.jpeg" width="200"/>
+  <img src="screen shots/Signup Screen.jpeg" width="200"/>
+</p>
 
-## 🔐 Login Screen
-![Login](screenshots/Login_Screen.jpeg)
+<p align="center">
+  <img src="screen shots/SetBalance Screen.jpeg" width="200"/>
+  <img src="screen shots/AddExpense Screen.jpeg" width="200"/>
+  <img src="screen shots/Update Screen.jpeg" width="200"/>
+</p>
 
-## 🆕 Signup Screen
-![Signup](screenshots/Singup_Screen.jpeg)
-
-## 💵 Set Balance Screen
-![Balance](screenshots/SetBalance_Screen.jpeg)
-
-## ➕ Add Expense Screen
-![Add Expense](screenshots/AddExpense_Screen.jpeg)
-
-## ✏️ Update Expense Screen
-![Update](screenshots/Update_Screen.jpeg)
-
-## 🗑 Delete Expense
-![Delete](screenshots/Delete_Screen.jpeg)
-
-## 🧑 Profile Screen
-![Profile](screenshots/Profile_Screen.jpeg)
-
-## 🔁 Forgot Password Screen
-![Forgot](screenshots/ForgotPassword_Screen.jpeg)
+<p align="center">
+  <img src="screen shots/Delete Screen.jpeg" width="200"/>
+  <img src="screen shots/Profile Screen.jpeg" width="200"/>
+  <img src="screen shots/ForgotPassword Screen.jpeg" width="200"/>
+</p>
 
 ---
 
