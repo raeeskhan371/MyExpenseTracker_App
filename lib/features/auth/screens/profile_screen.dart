@@ -59,7 +59,7 @@ class ProfileFormScreen extends StatelessWidget {
                 const SizedBox(height: 5),
 
                 Text(
-                  "Fill your profile details",
+                  "Your account information",
                   style: GoogleFonts.poppins(fontSize: 14, color: Colors.grey),
                 ),
 
@@ -139,7 +139,7 @@ class ProfileFormScreen extends StatelessWidget {
                       return CircularProgressIndicator(color: Colors.blue);
                     }
                     final doc = Snapshot.data!.data() as Map<String, dynamic>;
-                    final balance = doc["initialBalance"];
+                    final balance = doc["initialBalance"] ?? 0;
                     final formatter = NumberFormat('#,##0');
                     final formaterBalance = formatter.format(balance);
                     return AppTextformField(

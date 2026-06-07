@@ -110,6 +110,7 @@ class SignupScreen extends StatelessWidget {
                           ),
                         ),
                         AppTextformField(
+                          obscureText: true,
                           controller: passwordController,
                           hintText: "Create a password",
                           prefixIcon: Icons.lock,
@@ -125,6 +126,7 @@ class SignupScreen extends StatelessWidget {
                         ),
 
                         AppTextformField(
+                          obscureText: true,
                           controller: ConfirmPassController,
                           hintText: "Confirm your password",
                           prefixIcon: Icons.lock,

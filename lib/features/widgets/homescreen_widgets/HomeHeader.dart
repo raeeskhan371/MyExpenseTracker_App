@@ -28,19 +28,31 @@ class HomeHeader extends StatelessWidget {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Text(
                   "Loading...",
-                  style: GoogleFonts.poppins(color: Colors.indigo.shade400),
+                  style: GoogleFonts.poppins(
+                    fontSize: 18,
+                    color: Colors.indigo.shade400,
+                    fontWeight: FontWeight.w700,
+                  ),
                 );
               }
               if (snapshot.hasData == null || !snapshot.hasData) {
                 return Text(
                   "No Name",
-                  style: GoogleFonts.poppins(color: Colors.indigo.shade400),
+                  style: GoogleFonts.poppins(
+                    fontSize: 18,
+                    color: Colors.indigo.shade400,
+                    fontWeight: FontWeight.w700,
+                  ),
                 );
               }
               if (snapshot.hasError) {
                 return Text(
                   "Some Thing Wrong.. 💤 ",
-                  style: GoogleFonts.poppins(color: Colors.indigo.shade400),
+                  style: GoogleFonts.poppins(
+                    fontSize: 18,
+                    color: Colors.indigo.shade400,
+                    fontWeight: FontWeight.w700,
+                  ),
                 );
               }
               final userName = snapshot.data!;

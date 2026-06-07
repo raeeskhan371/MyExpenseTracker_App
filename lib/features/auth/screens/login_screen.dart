@@ -92,8 +92,9 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ),
                         AppTextformField(
+                          obscureText: true,
                           controller: passwordcontroller,
-                          hintText: "Create a password",
+                          hintText: "Enter Password",
                           prefixIcon: Icons.lock,
                         ),
                         const SizedBox(height: 8),
