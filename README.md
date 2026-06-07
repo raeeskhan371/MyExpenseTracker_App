@@ -20,28 +20,27 @@ This app helps users track their income, expenses, and remaining balance in real
 
 ---
 
-## 📸 App Screenshots
+
 
 ## 📸 App Screenshots
 
 <p align="center">
-  <img src="screenshots/Home Screen.jpeg" width="200"/>
-  <img src="screenshots/Login Screen.jpeg" width="200"/>
-  <img src="screenshots/Signup Screen.jpeg" width="200"/>
+  <img src="screenshots/Home_Screen.jpeg" width="200"/>
+  <img src="screenshots/Login_Screen.jpeg" width="200"/>
+  <img src="screenshots/Signup_Screen.jpeg" width="200"/>
 </p>
 
 <p align="center">
-  <img src="screenshots/SetBalance Screen.jpeg" width="200"/>
-  <img src="screenshots/AddExpense Screen.jpeg" width="200"/>
-  <img src="screenshots/Update Screen.jpeg" width="200"/>
+  <img src="screenshots/SetBalance_Screen.jpeg" width="200"/>
+  <img src="screenshots/AddExpense_Screen.jpeg" width="200"/>
+  <img src="screenshots/Update_Screen.jpeg" width="200"/>
 </p>
 
 <p align="center">
-  <img src="screenshots/Delete Screen.jpeg" width="200"/>
-  <img src="screenshots/Profile Screen.jpeg" width="200"/>
-  <img src="screenshots/ForgotPassword Screen.jpeg" width="200"/>
+  <img src="screenshots/Delete_Screen.jpeg" width="200"/>
+  <img src="screenshots/Profile_Screen.jpeg" width="200"/>
+  <img src="screenshots/ForgotPassword_Screen.jpeg" width="200"/>
 </p>
-
 ---
 
 # 🛠 Tech Stack
