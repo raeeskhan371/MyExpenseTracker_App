@@ -30,7 +30,7 @@ This app helps users track their income, expenses, and remaining balance in real
 </p>
 
 <p align="center">
-  <img src="screenshots/Home_Screen.jpeg" width="200"/>
+  <img src="screenshots/Home_Expense_Screen.jpeg" width="200"/>
   <img src="screenshots/AddExpense_Screen.jpeg" width="200"/>
   <img src="screenshots/Update_Screen.jpeg" width="200"/>
 </p>
