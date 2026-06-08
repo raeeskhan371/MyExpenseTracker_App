@@ -1,6 +1,8 @@
 import 'package:expense_tracker_app/features/auth/provider/auth_provider.dart';
 import 'package:expense_tracker_app/features/auth/screens/auth_gate.dart';
 import 'package:expense_tracker_app/features/expenses/provider/expense_provider.dart';
+import 'package:expense_tracker_app/features/expenses/screens/bottom_navigation.dart';
+import 'package:expense_tracker_app/features/expenses/services/notification_services.dart';
 import 'package:expense_tracker_app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +11,8 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  NotificationServices().initNotification();
   runApp(
     MultiProvider(
       providers: [

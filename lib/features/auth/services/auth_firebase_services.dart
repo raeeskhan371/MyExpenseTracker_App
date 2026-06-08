@@ -25,7 +25,7 @@ class authServices {
         createdAt: DateTime.now(),
       );
 
-      await _firestore.collection("user").doc(uid).set(userModel.toMap());
+      await _firestore.collection("users").doc(uid).set(userModel.toMap());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         throw "This email is already registered.";
@@ -106,7 +106,7 @@ class authServices {
   Future<DocumentSnapshot<Map<String, dynamic>>> profileData() async {
     final uid = _auth.currentUser!.uid;
 
-    var doc = await _firestore.collection("user").doc(uid).get();
+    var doc = await _firestore.collection("users").doc(uid).get();
     return doc;
   }
 }

@@ -74,17 +74,23 @@ class ProfileFormScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 5),
-
                 FutureBuilder(
                   future: context.read<AuthProvider>().getProfileData(),
-                  builder: (context, Snapshot) {
-                    if (!Snapshot.hasData) {
-                      return CircularProgressIndicator(color: Colors.blue);
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return const CircularProgressIndicator(
+                        color: Colors.blue,
+                      );
                     }
-                    final doc = Snapshot.data!.data() as Map<String, dynamic>;
-                    return AppTextformField(
-                      hintText: doc["name"].toString(),
 
+                    final doc = snapshot.data?.data() as Map<String, dynamic>?;
+
+                    final name = doc?["name"];
+
+                    return AppTextformField(
+                      hintText: (name != null && name.toString().isNotEmpty)
+                          ? name.toString()
+                          : "No name found",
                       prefixIcon: Icons.person_2,
                       readOnly: true,
                     );
@@ -106,14 +112,21 @@ class ProfileFormScreen extends StatelessWidget {
 
                 FutureBuilder(
                   future: context.read<AuthProvider>().getProfileData(),
-                  builder: (context, Snapshot) {
-                    if (!Snapshot.hasData) {
-                      return CircularProgressIndicator(color: Colors.blue);
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return const CircularProgressIndicator(
+                        color: Colors.blue,
+                      );
                     }
-                    final doc = Snapshot.data!.data() as Map<String, dynamic>;
-                    return AppTextformField(
-                      hintText: doc["email"].toString(),
 
+                    final doc = snapshot.data?.data() as Map<String, dynamic>?;
+
+                    final email = doc?["email"];
+
+                    return AppTextformField(
+                      hintText: (email != null && email.toString().isNotEmpty)
+                          ? email.toString()
+                          : "No email found",
                       prefixIcon: Icons.mail,
                       readOnly: true,
                     );
@@ -134,19 +147,27 @@ class ProfileFormScreen extends StatelessWidget {
 
                 FutureBuilder(
                   future: context.read<AuthProvider>().getProfileData(),
-                  builder: (context, Snapshot) {
-                    if (!Snapshot.hasData) {
-                      return CircularProgressIndicator(color: Colors.blue);
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return const CircularProgressIndicator(
+                        color: Colors.blue,
+                      );
                     }
-                    final doc = Snapshot.data!.data() as Map<String, dynamic>;
-                    final balance = doc["initialBalance"] ?? 0;
+
+                    final doc = snapshot.data?.data() as Map<String, dynamic>?;
+
+                    final rawBalance = doc?["initialBalance"];
+
+                    final balance = (rawBalance is num)
+                        ? rawBalance
+                        : double.tryParse(rawBalance.toString()) ?? 0;
+
                     final formatter = NumberFormat('#,##0');
-                    final formaterBalance = formatter.format(balance);
+                    final formattedBalance = formatter.format(balance);
+
                     return AppTextformField(
-                      hintText: formaterBalance.toString(),
-
+                      hintText: formattedBalance,
                       prefixIcon: Icons.account_balance_wallet_outlined,
-
                       readOnly: true,
                     );
                   },
@@ -164,20 +185,37 @@ class ProfileFormScreen extends StatelessWidget {
 
                 FutureBuilder(
                   future: context.read<AuthProvider>().getProfileData(),
-                  builder: (context, Snapshot) {
-                    if (!Snapshot.hasData) {
-                      return CircularProgressIndicator(color: Colors.blue);
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return const CircularProgressIndicator(
+                        color: Colors.blue,
+                      );
                     }
-                    final doc = Snapshot.data!.data() as Map<String, dynamic>;
 
-                    final dateTime = (doc["createdAt"] as Timestamp).toDate();
+                    final doc = snapshot.data?.data() as Map<String, dynamic>?;
+
+                    if (doc == null) {
+                      return const CircularProgressIndicator();
+                    }
+
+                    final createdAt = doc["createdAt"];
+
+                    if (createdAt == null || createdAt is! Timestamp) {
+                      return AppTextformField(
+                        hintText: "No date available",
+                        prefixIcon: Icons.date_range_outlined,
+                        readOnly: true,
+                      );
+                    }
+
+                    final dateTime = createdAt.toDate();
 
                     final formatDate = DateFormat(
                       "dd/MM/yyyy, hh:mm a",
                     ).format(dateTime);
+
                     return AppTextformField(
                       hintText: formatDate,
-
                       prefixIcon: Icons.date_range_outlined,
                       readOnly: true,
                     );
