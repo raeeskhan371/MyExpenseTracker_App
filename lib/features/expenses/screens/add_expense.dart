@@ -1,6 +1,7 @@
 import 'package:expense_tracker_app/core/widgets/custome_ElevetedButton.dart';
 import 'package:expense_tracker_app/core/widgets/custome_Textfield.dart';
 import 'package:expense_tracker_app/features/expenses/provider/expense_provider.dart';
+import 'package:expense_tracker_app/features/expenses/services/notification_services.dart';
 import 'package:expense_tracker_app/features/widgets/add_expense_screen_widgtes/add_expense_topRow.dart';
 import 'package:expense_tracker_app/features/widgets/add_expense_screen_widgtes/category_item_card.dart';
 import 'package:flutter/material.dart';
@@ -205,6 +206,12 @@ class _AddExpenseState extends State<AddExpense> {
                           content: Text("Add Expense Successfully!"),
                           backgroundColor: Colors.blue,
                         ),
+                      );
+                      NotificationServices.showNotification(
+                        title: "Expense Added",
+                        body: "Your expense has been successfully saved",
+                        channelId: "expense_channel",
+                        channelName: "Expenses",
                       );
 
                       widget.onExpenseAdd();
