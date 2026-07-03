@@ -142,6 +142,7 @@ class LoginScreen extends StatelessWidget {
                                           password: passwordcontroller.text
                                               .trim(),
                                         );
+                                        emailcontroller.clear();
                                         ScaffoldMessenger.of(
                                           context,
                                         ).showSnackBar(

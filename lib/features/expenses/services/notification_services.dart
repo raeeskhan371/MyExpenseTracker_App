@@ -55,13 +55,14 @@ class NotificationServices {
       priority: Priority.high,
     );
     NotificationDetails details = NotificationDetails(android: androidDetails);
+    int id = Random().nextInt(100000);
 
     await _plugin.show(
-      id: Random().nextInt(50000),
+      id: id,
       title: title,
       body: body,
       notificationDetails: details,
     );
-    print("Notification ID: ");
+    print("Notification ID:$id ");
   }
 }

@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
       title: 'MyExpense Tracker',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
       debugShowCheckedModeBanner: false,
-      home: BottomeNavBar(),
+      home: AuthGate(),
     );
   }
 }
