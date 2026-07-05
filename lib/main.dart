@@ -1,4 +1,4 @@
-import 'package:expense_tracker_app/features/auth/provider/auth_provider.dart';
+import 'package:expense_tracker_app/features/auth/provider/auth_user_provider.dart';
 import 'package:expense_tracker_app/features/auth/screens/auth_gate.dart';
 import 'package:expense_tracker_app/features/expenses/provider/expense_provider.dart';
 import 'package:expense_tracker_app/features/expenses/screens/Notification_ScreenTesting.dart';

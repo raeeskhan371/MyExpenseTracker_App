@@ -22,7 +22,7 @@ class NotificationServices {
     print("FCM Token:");
     print(token);
 
-    await _firestore.collection("users").doc(uid).set({
+    await _firestore.collection("Users").doc(uid).set({
       "fcmToken": token,
     }, SetOptions(merge: true));
   }

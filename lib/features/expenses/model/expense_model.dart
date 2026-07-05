@@ -1,14 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class ExpenseModel {
   final String title;
   final double amount;
   final String note;
-  final DateTime createdAt;
+  final Timestamp? createdAt;
 
   ExpenseModel({
     required this.title,
     required this.amount,
     required this.note,
-    required this.createdAt,
+    this.createdAt,
   });
 
   Map<String, dynamic> toMap() {
@@ -16,7 +18,7 @@ class ExpenseModel {
       'title': title,
       'amount': amount,
       'note': note,
-      'createdAt': createdAt,
+      'createdAt': FieldValue.serverTimestamp(),
     };
   }
 
@@ -25,7 +27,7 @@ class ExpenseModel {
       title: map['title'] ?? '',
       amount: (map['amount'] ?? 0).toDouble(),
       note: map['note'] ?? '',
-      createdAt: DateTime.parse(map['createdAt']),
+      createdAt: (map["createdAt"] as Timestamp),
     );
   }
 }

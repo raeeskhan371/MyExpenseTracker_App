@@ -3,12 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class BalanceOverviewCard extends StatelessWidget {
+class BalanceOverviewCard extends StatefulWidget {
   const BalanceOverviewCard({super.key});
 
   @override
+  State<BalanceOverviewCard> createState() => _BalanceOverviewCardState();
+}
+
+class _BalanceOverviewCardState extends State<BalanceOverviewCard> {
+  bool isBalanceVisibale = true;
+  @override
   Widget build(BuildContext context) {
-    final provider = context.watch<ExpenseProvider>();
+    print("Only Balance OverCard Rebuild");
+
     return Container(
       width: double.infinity,
       height: 150,
@@ -34,11 +41,20 @@ class BalanceOverviewCard extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                const SizedBox(width: 10),
-                Icon(
-                  Icons.remove_red_eye_outlined,
-                  color: Colors.white,
-                  size: 18,
+
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      isBalanceVisibale = !isBalanceVisibale;
+                    });
+                  },
+                  icon: Icon(
+                    isBalanceVisibale
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off_outlined,
+                    color: Colors.white,
+                    size: 20,
+                  ),
                 ),
               ],
             ),
@@ -65,7 +81,7 @@ class BalanceOverviewCard extends StatelessWidget {
                     var balance = snapshot.data;
 
                     return Text(
-                      balance.toString(),
+                      isBalanceVisibale ? balance.toString() : "****",
                       style: GoogleFonts.poppins(
                         fontSize: 28,
                         color: Colors.white,
@@ -73,6 +89,13 @@ class BalanceOverviewCard extends StatelessWidget {
                       ),
                     );
                   },
+                ),
+                const SizedBox(width: 5),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {});
+                  },
+                  child: Icon(Icons.refresh, color: Colors.white, size: 18),
                 ),
                 Spacer(),
                 Container(

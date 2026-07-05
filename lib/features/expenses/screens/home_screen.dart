@@ -1,9 +1,5 @@
-import 'package:expense_tracker_app/core/widgets/custome_ElevetedButton.dart';
-import 'package:expense_tracker_app/features/expenses/screens/add_expense.dart';
-import 'package:expense_tracker_app/features/expenses/screens/set_initial_balance.dart';
 import 'package:expense_tracker_app/features/widgets/homescreen_widgets/HomeHeader.dart';
 import 'package:expense_tracker_app/features/widgets/homescreen_widgets/balance_overview_card.dart';
-import 'package:expense_tracker_app/features/widgets/homescreen_widgets/financial_summary_card.dart';
 import 'package:expense_tracker_app/features/widgets/homescreen_widgets/home_screen_listTile.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool get wantKeepAlive => true;
   @override
   Widget build(BuildContext context) {
+    print(" How Many Time Rebuild ");
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -36,9 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   // Main top Container
                   BalanceOverviewCard(),
                   const SizedBox(height: 10),
-
                   const SizedBox(height: 10),
-
                   // Recent Expenseces
                   ExpenseListTile(),
                 ],

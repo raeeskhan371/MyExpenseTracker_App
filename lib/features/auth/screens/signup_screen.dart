@@ -1,4 +1,4 @@
-import 'package:expense_tracker_app/features/auth/provider/auth_provider.dart';
+import 'package:expense_tracker_app/features/auth/provider/auth_user_provider.dart';
 import 'package:expense_tracker_app/features/auth/screens/login_screen.dart';
 import 'package:expense_tracker_app/core/widgets/custome_ElevetedButton.dart';
 import 'package:expense_tracker_app/core/widgets/custome_Textfield.dart';

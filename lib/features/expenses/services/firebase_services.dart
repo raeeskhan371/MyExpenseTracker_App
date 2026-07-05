@@ -10,7 +10,7 @@ class ExpenseServices {
   Future<void> setInitialBalance({required double balance}) async {
     var uid = _auth.currentUser!.uid;
 
-    await _firestore.collection("users").doc(uid).set({
+    await _firestore.collection("Users").doc(uid).set({
       "initialBalance": balance,
     }, SetOptions(merge: true));
   }
@@ -20,7 +20,7 @@ class ExpenseServices {
   Stream<DocumentSnapshot<Map<String, dynamic>>> getUserData() {
     final uid = _auth.currentUser!.uid;
 
-    return _firestore.collection("users").doc(uid).snapshots();
+    return _firestore.collection("Users").doc(uid).snapshots();
   }
 
   // add expense
@@ -30,20 +30,13 @@ class ExpenseServices {
     required double amount,
     required String note,
   }) async {
-    final expense = ExpenseModel(
-      title: title,
-      amount: amount,
-      note: note,
-      createdAt: DateTime.now(),
-    );
-
+    final expenseModel = ExpenseModel(title: title, amount: amount, note: note);
     final uid = _auth.currentUser!.uid;
 
-    final userRef = _firestore.collection("users").doc(uid);
-    await userRef.collection("expense").add(expense.toMap());
+    final userRef = _firestore.collection("Users").doc(uid);
+    await userRef.collection("Expenses").add(expenseModel.toMap());
     final snapshot = await userRef.get();
     final data = snapshot.data() as Map<String, dynamic>;
-
     final currentBalance =
         double.tryParse(data["initialBalance"].toString()) ?? 0.0;
   }
@@ -53,9 +46,9 @@ class ExpenseServices {
     final uid = _auth.currentUser!.uid;
 
     return _firestore
-        .collection("users")
+        .collection("Users")
         .doc(uid)
-        .collection("expense")
+        .collection("Expenses")
         .snapshots();
   }
 
@@ -67,9 +60,9 @@ class ExpenseServices {
     required double amount,
   }) async {
     final uid = _auth.currentUser!.uid;
-    final userRefr = _firestore.collection("users").doc(uid);
+    final userRefr = _firestore.collection("Users").doc(uid);
 
-    await userRefr.collection("expense").doc(id).update({
+    await userRefr.collection("Expenses").doc(id).update({
       "title": title,
       "amount": amount,
     });
@@ -78,18 +71,18 @@ class ExpenseServices {
 
   Future<void> deleteExpensebutton({required String id}) async {
     final uid = _auth.currentUser!.uid;
-    final userRefr = _firestore.collection("users").doc(uid);
+    final userRefr = _firestore.collection("Users").doc(uid);
 
-    await userRefr.collection("expense").doc(id).delete();
+    await userRefr.collection("Expenses").doc(id).delete();
   }
 
   /// Fetch Reaming Balance
 
   Future<double> fetchRemainingBalance() async {
     final uid = _auth.currentUser!.uid;
-    final userRef = _firestore.collection("users").doc(uid);
-    final userDoc = await _firestore.collection("users").doc(uid).get();
-    final expenseSnapShot = await userRef.collection("expense").get();
+    final userRef = _firestore.collection("Users").doc(uid);
+    final userDoc = await _firestore.collection("Users").doc(uid).get();
+    final expenseSnapShot = await userRef.collection("Expenses").get();
 
     final initalBalance = (userDoc["initialBalance"] as num).toDouble();
     double totalExpense = 0;
@@ -105,7 +98,7 @@ class ExpenseServices {
 
   Future<String> getUserName() async {
     final uid = _auth.currentUser!.uid;
-    var docs = await _firestore.collection("users").doc(uid).get();
+    var docs = await _firestore.collection("Users").doc(uid).get();
 
     final userName = (docs["name"]).toString();
     return userName;

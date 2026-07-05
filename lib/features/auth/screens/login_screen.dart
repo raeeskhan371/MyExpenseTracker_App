@@ -1,4 +1,4 @@
-import 'package:expense_tracker_app/features/auth/provider/auth_provider.dart';
+import 'package:expense_tracker_app/features/auth/provider/auth_user_provider.dart';
 import 'package:expense_tracker_app/features/auth/screens/forgot_screen.dart';
 import 'package:expense_tracker_app/features/auth/screens/signup_screen.dart';
 import 'package:expense_tracker_app/features/expenses/screens/home_screen.dart';

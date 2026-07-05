@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:expense_tracker_app/features/auth/model/authModel.dart';
+import 'package:expense_tracker_app/features/auth/model/auth_userModel.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 
 class authServices {
@@ -18,14 +19,8 @@ class authServices {
       );
       final String uid = UserCredential.user!.uid;
 
-      final userModel = AuthModel(
-        name: name,
-        email: email,
-        uid: uid,
-        createdAt: DateTime.now(),
-      );
-
-      await _firestore.collection("users").doc(uid).set(userModel.toMap());
+      final userModel = UserModel(uid: uid, email: email, name: name);
+      await _firestore.collection("Users").doc(uid).set(userModel.toMap());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         throw "This email is already registered.";
@@ -106,7 +101,7 @@ class authServices {
   Future<DocumentSnapshot<Map<String, dynamic>>> profileData() async {
     final uid = _auth.currentUser!.uid;
 
-    var doc = await _firestore.collection("users").doc(uid).get();
+    var doc = await _firestore.collection("Users").doc(uid).get();
     return doc;
   }
 }
