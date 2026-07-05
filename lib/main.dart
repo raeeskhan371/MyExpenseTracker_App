@@ -1,3 +1,4 @@
+import 'package:expense_tracker_app/core/routes/routes_helper.dart';
 import 'package:expense_tracker_app/features/auth/provider/auth_user_provider.dart';
 import 'package:expense_tracker_app/features/auth/screens/auth_gate.dart';
 import 'package:expense_tracker_app/features/expenses/provider/expense_provider.dart';
@@ -37,7 +38,9 @@ class MyApp extends StatelessWidget {
       title: 'MyExpense Tracker',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
       debugShowCheckedModeBanner: false,
-      home: AuthGate(),
+      routes: RoutesHelper.myRoutes(),
+      onGenerateRoute: (RouteSettings settings) =>
+          RoutesHelper.generateRoutes(settings),
     );
   }
 }
