@@ -26,18 +26,18 @@ class RoutesHelper {
   static generateRoutes(RouteSettings settings) {
     switch (settings.name) {
       case SingUp:
-        return {MaterialPageRoute(builder: (_) => SignupScreen())};
+        return MaterialPageRoute(builder: (_) => SignupScreen());
       case Login:
-        return {MaterialPageRoute(builder: (_) => LoginScreen())};
+        return MaterialPageRoute(builder: (_) => LoginScreen());
       case ForgotPassword:
-        return {MaterialPageRoute(builder: (_) => ForgotScreen())};
+        return MaterialPageRoute(builder: (_) => ForgotScreen());
       case Home:
-        return {MaterialPageRoute(builder: (_) => HomeScreen())};
+        return MaterialPageRoute(builder: (_) => HomeScreen());
 
       case BottomNavigationBar:
-        return {MaterialPageRoute(builder: (_) => BottomeNavBar())};
+        return MaterialPageRoute(builder: (_) => BottomeNavBar());
       case Profile:
-        return {MaterialPageRoute(builder: (_) => ProfileFormScreen())};
+        return MaterialPageRoute(builder: (_) => ProfileFormScreen());
     }
   }
 }
