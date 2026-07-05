@@ -21,8 +21,19 @@ class ProfileFormScreen extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.start,
+                //   children: [
+                //     GestureDetector(
+                //       onTap: () {
+                //         Navigator.pop(context);
+                //       },
+                //       child: Icon(Icons.arrow_back_ios, color: Colors.black),
+                //     ),
+                //   ],
+                // ),
                 const SizedBox(height: 20),
 
                 Container(
@@ -44,7 +55,6 @@ class ProfileFormScreen extends StatelessWidget {
                     color: Colors.indigo.shade400,
                   ),
                 ),
-
                 const SizedBox(height: 15),
 
                 // TITLE

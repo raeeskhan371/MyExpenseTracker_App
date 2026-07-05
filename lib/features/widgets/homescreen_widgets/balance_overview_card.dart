@@ -61,8 +61,8 @@ class _BalanceOverviewCardState extends State<BalanceOverviewCard> {
             // Balance And Wallet Icon
             Row(
               children: [
-                FutureBuilder(
-                  future: context.read<ExpenseProvider>().userReamingBalance(),
+                StreamBuilder(
+                  stream: context.read<ExpenseProvider>().userReamingBalance(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return CircularProgressIndicator(color: Colors.white);
@@ -79,7 +79,6 @@ class _BalanceOverviewCardState extends State<BalanceOverviewCard> {
                       );
                     }
                     var balance = snapshot.data;
-
                     return Text(
                       isBalanceVisibale ? balance.toString() : "****",
                       style: GoogleFonts.poppins(
@@ -91,12 +90,7 @@ class _BalanceOverviewCardState extends State<BalanceOverviewCard> {
                   },
                 ),
                 const SizedBox(width: 5),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {});
-                  },
-                  child: Icon(Icons.refresh, color: Colors.white, size: 18),
-                ),
+
                 Spacer(),
                 Container(
                   height: 60,

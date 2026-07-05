@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expense_tracker_app/features/expenses/model/expense_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:rxdart/rxdart.dart';
 
 class ExpenseServices {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -78,20 +79,35 @@ class ExpenseServices {
 
   /// Fetch Reaming Balance
 
-  Future<double> fetchRemainingBalance() async {
+  Stream<double> fetchRemainingBalance() {
     final uid = _auth.currentUser!.uid;
-    final userRef = _firestore.collection("Users").doc(uid);
-    final userDoc = await _firestore.collection("Users").doc(uid).get();
-    final expenseSnapShot = await userRef.collection("Expenses").get();
+    final docRef = _firestore.collection("Users").doc(uid);
+    final expenseRef = docRef.collection("Expenses");
 
-    final initalBalance = (userDoc["initialBalance"] as num).toDouble();
-    double totalExpense = 0;
+    return Rx.combineLatest2(
+      docRef.snapshots(),
+      expenseRef.snapshots(),
+      calculateBalance,
+    );
+  }
 
-    for (var e in expenseSnapShot.docs) {
-      totalExpense += (e["amount"] as num).toDouble();
+  double calculateBalance(
+    DocumentSnapshot userDoc,
+    QuerySnapshot expenseSnapshot,
+  ) {
+    final initialBalance = (userDoc["initialBalance"] as num).toDouble();
+
+    double totalBalance = 0.0;
+
+    for (final expense in expenseSnapshot.docs) {
+      totalBalance += (expense["amount"] as num).toDouble();
     }
-    final double remaining = initalBalance - totalExpense;
-    return remaining < 0 ? 0.00 : remaining;
+    final remainingBalance = initialBalance - totalBalance;
+
+    if (remainingBalance < 0) {
+      return 0.0;
+    } else
+      return remainingBalance;
   }
 
   //UserName Fetching

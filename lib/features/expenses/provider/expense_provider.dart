@@ -72,10 +72,8 @@ class ExpenseProvider with ChangeNotifier {
 
   // User Reamining Balance
 
-  Future<double> userReamingBalance() async {
-    double fetchRemainingBalance = await _expenseServices
-        .fetchRemainingBalance();
-    return fetchRemainingBalance;
+  Stream<double> userReamingBalance() {
+    return _expenseServices.fetchRemainingBalance();
   }
 
   Future<String> fetchingUserName() async {
